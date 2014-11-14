@@ -1,0 +1,15 @@
+diff a/Desktop/routes/index.js b/Desktop/routes/index.js	(rejected hunks)
+@@ -0,0 +1,13 @@
++
++//var pg = require('pg');
++//var conString = "pg://postgres:casa7463@localhost:5432/oficinasMedicas";
++/*
++ * GET home page.
++ */
++
++exports.index = function(req, res){
++  res.render('index', { title: 'Express' });
++};
++
++
++

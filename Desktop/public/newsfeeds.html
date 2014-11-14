@@ -1,0 +1,42 @@
+<!-- Collect the nav links, forms, and other content for toggling -->
+    <style type="text/css">
+
+
+    #list{
+        padding-top: 5px;
+    }
+
+
+   
+</style>
+
+                
+<div id="list" ng-controller="newsfeedsController as newsfeedCtrl"> 
+ 
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="item in newsfeedCtrl.items" ng-click="newsfeedCtrl.setValue(item)">
+    <div class="row">
+  <div class="col-xs-12 col-md-4"><div class="itemimg"> <div class="col-sm-12 col-md-12 col-lg-12"><img ng-src="{{item.itempicture}}" class="img-responsive" ui-sref="form.viewitem({ item:item.itemid})" > </div></div></div>
+  <div class="row">
+  <div class="col-xs-12 col-md-4"><h2 ><CENTER>{{item.itemstatus}}</CENTER></h2><h4><CENTER>{{vm.translations.ITEMID}}: {{item.itemid}}</CENTER></h4><h4><CENTER>{{vm.translations.CATEGORY}}: {{item.category}}</CENTER></h4><h4><CENTER>{{item.locationitem}}</CENTER></h4><h4><center>{{vm.translations.SEENBY}}: {{item.itemviews}}</center></h4>
+ </div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-4">  
+  <h3 ><center>{{item.itemname}}</center></h3>
+ <button ng-click="newsfeedCtrl.thumbsdownfunction(item.itemid)" ><span class="glyphicon glyphicon-thumbs-down custom"></span></button> 
+
+
+</div>
+</div>
+</div>
+ 
+  </div>
+  
+  
+  </li>
+   
+  
+
+</ul>
+</div>

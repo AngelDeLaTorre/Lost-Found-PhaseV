@@ -1,0 +1,78 @@
+
+<div ng-controller ="helpController as helpCtrl">
+<div ng-controller ="languageController" class="container2">
+  
+    <div class="row" >
+ <div class="col-xs-12 col-md-12">
+            <div class="well well-sm" >
+               <form>
+                <div class="row">
+                  <div id ="helpTitle">
+                   <h1 ><center>{{vm.translations.HELP}}</center></h1>
+                    </div>
+                    <div class="col-sm-11">
+                      <ul>
+                  <h2 align="left">{{vm.translations.RESETKEY}}</h2>
+                  <p align="left">{{vm.translations.RESETKEYTEXT}}</p></ul>
+            </div>
+
+                   <div id="resetKeyEmail">
+                  <div id ="rowGetKey"class="row">
+            <div class="col-md-8">
+          <input id ="resetKeyEmail" type="text" class="form-control input-sm"  placeholder="{{vm.translations.EMAIL}}" ng-model="helpCtrl.helpEmail" >
+            </div>
+           
+            <button id="getKeyBtn" class="btn btn-small btn-primary" name="Continue" ng-click="helpCtrl.getUser()" >
+    <span>{{vm.translations.RESETKEY}}</span>
+    
+</button>
+          
+          
+          </div>
+               </div>
+
+
+
+               
+              
+         <div class="col-sm-11">
+        
+               <ul align = "left">
+                <h2 aling ="left">{{vm.translations.HOWTOUSE}}</h2>
+                <li align = "left">{{vm.translations.HOME}}</li>
+                 <img width= "500px" heigth="250px" src="/images/HomePage.png">
+                <p>{{vm.translations.HOMETEXT}}</p>
+                <li align = "left">Lost</li>
+                <img width= "500px" heigth="250px" src="/images/Lost.png">
+                <p>{{vm.translations.LOSTTEXT}}</p>
+                <li align = "left"> Found</li>
+                <img width= "500px" heigth="250px" src="/images/Found.png">
+                <p>{{vm.translations.FOUNDTEXT}}</p>
+               
+                <li  align = "left">{{vm.translations.REPORTITEM}}</li>
+                <img width= "500px" heigth="250px" src="/images/reportItem.png">
+                <p>{{vm.translations.REPORTITEMTEXT}}</p>
+                <li align = "left">{{vm.translations.VIEWITEM}}</li>
+                <img width= "500px" heigth="250px" src="/images/viewItem.png">
+                <p>{{vm.translations.VIEWITEMTEXT}}</p>
+                <li align = "left">{{vm.translations.COMMENT}}</li>
+                <img width= "500px" heigth="250px" src="/images/reviewItem.png">
+                <p>{{vm.translations.COMMENTTEXT}}</p>
+              
+                <li align = "left">{{vm.translations.CONTACT}}</li>
+                <img width= "500px" heigth="250px" src="/images/ContactUs.png">
+                <p>{{vm.translations.CONTACTUSTEXT}}</p>
+
+               </ul>
+              </div>
+                   
+
+                </div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+</div>
+</div>
+

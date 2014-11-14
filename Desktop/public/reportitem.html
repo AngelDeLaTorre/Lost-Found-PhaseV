@@ -1,0 +1,105 @@
+<!-- <div ng-controller="imgurController as img"> -->
+<div ng-controller= "reportItemController as reportItemCtrl">
+<div ng-controller="languageController"  >
+   
+
+
+<div class="container2" >
+   <div class="row" >
+ <div class="col-xs-12 col-md-12">
+            
+             <!---<input type="file" file-model="myFile" class="btn btn-primary" role="button">{{vm.translations.UPLOAD}}</input>-->
+           <div> 
+        <input type="file" file-model="myFile"></div>
+
+
+       
+            <div class="well well-sm">
+
+                <form>
+                <div class="row">
+
+                   <div class="col-xs-6 col-md-6">
+                        <div class="form-group">
+                            <label for="name">
+                                {{vm.translations.WHATIS}}</label>
+                            <input type="text" class="form-control" id="name" placeholder="{{vm.translations.WHATIS}}" required="require" ng-model="list.itemname">
+                             <label for="nameUser">
+                                {{vm.translations.FIRSTNAME}}</label>
+                            <input type="text" class="form-control" id="nameUser2" placeholder="{{vm.translations.FIRSTNAME}}" required="require" ng-model="list.firstname">
+                             <label for="lastUser">
+                                {{vm.translations.LASTNAME}}</label>
+                            <input type="text" class="form-control" id="lastUser" placeholder="{{vm.translations.LASTNAME}}" required="require" ng-model="list.lastname">
+                             <label for="Email">
+                                {{vm.translations.EMAIL}}</label>
+                            <input type="text" class="form-control" id="phone" placeholder="{{vm.translations.EMAIL}}" required="require" ng-model="list.email">
+                             <label for="phone">
+                                {{vm.translations.PHONENUM}}</label>
+                            <input type="text" class="form-control" id="phone" placeholder="787-655-5678" required="require" ng-model="list.phone">
+                       
+                        <div class="form-group">
+                            <label for="location">
+                                {{vm.translations.LOCATION}}</label>
+                            <div class="input-group">
+                                
+                                </span>
+                                <input type="input" class="form-control" id="location" placeholder=" {{vm.translations.PLACE}} " required="require" ng-model="list.location">
+                                  <label for="City">
+                                {{vm.translations.CITY}}</label>
+                                 <input type="input" class="form-control" id="location" placeholder=" {{vm.translations.CITY}} " ng-model="list.city" ></div>
+                        </div>
+                        </div>
+                                                      
+                        </div>
+                    <div class="col-xs-6  col-md-6">
+                        <div class="form-group">
+                             <div class="form-group">
+                                <label for="subject">
+                                    {{vm.translations.CATEGORY}}</label>
+                                <select id="subject" name="subject" class="form-control" required="required" ng-model="list.category">
+                                    
+                         <option selected>{{vm.translations.ALL}}</option>
+                         
+                         <optgroup label = "Category">
+                           <option>Bags</option>
+                           <option>Books</option>
+                           <option>Clothes</option>
+                           <option>Electronics</option>
+                           <option>Tools</option>
+                           <option>Other</option>
+                         </optgroup>
+                         
+                       </select></button>
+                          
+                            </div>
+                            <label for="name">
+                                {{vm.translations.DESCRIPTION}}</label>
+                            <textarea name="message" id="message" class="form-control" rows="9" cols="25"
+                                placeholder="Message" ng-model="list.description" ng-pattern="reportItemCtrl.pattern.field" ></textarea>
+                        </div class "left">
+                       
+                         <label class="checkbox-inline">
+ 
+      <input type="checkbox" id="inlineCheckbox1" value="option1"> {{vm.translations.CHECK1REP}}
+
+    </label>
+
+                    </div>
+                     <div class="row" >
+ <div class="col-xs-2 col-md-12">
+        
+       <p><a  ui-sref="form.newsfeeds" ng-click="gotoTop(); reportItemCtrl.setValue(list,myFile)" class="btn btn-primary" role="button" >{{vm.translations.SUBMIT}}</a> </p>
+
+      </div>  
+      </div>   
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+
+                       
+    </div>
+    
+</div>
+</div>

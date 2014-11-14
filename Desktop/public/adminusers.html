@@ -1,0 +1,59 @@
+<div ng-controller="languageController">
+<div ng-controller="adminUsersController as userCtrl">
+<div id = "AdminSearch" >
+   <div class="col-xs-6 col-md-10">
+              
+                 <input type="text" class="form-control" placeholder={{vm.translations.SEARCH}} id="searchBarUsers" ng-model="searchAdminUser">
+             </div>
+ 
+              
+   <div id ="searchUser">                        
+        <a  id ="SearchBtn" class="btn btn-primary" role="button" ng-click="userCtrl.setValue(searchAdminUser)">{{vm.translations.SEARCH}}</a> 
+        
+      </div> 
+</div>
+
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div id = "headingUserList" class="panel-heading"> 
+
+   <div class="col-xs-6 col-md-8">    
+   <h4 align = "left"> <strong>{{vm.translations.USERS}}</strong></h4>
+
+</div>
+              
+        <a id ="BlockBtn" class="btn btn-primary" role="button" ng-click ="userCtrl.getSelectedForBlock()">{{vm.translations.BLOCK}}</a> 
+        <a id ="UnblockBtn" class="btn btn-primary" role="button" ng-click ="userCtrl.getSelectedForUNBlock()">{{vm.translations.UNBLOCK}}</a> 
+
+  </div>
+  <!-- <div class="panel-body">
+    <p></p>
+  </div> -->
+ 
+  <!-- Table -->
+  <table class="table"  >
+        <thead>
+          <tr>
+            <th><center>{{vm.translations.SELECT}}</center></th>
+            <th><center>{{vm.translations.FIRSTNAME}}</center></th>
+            <th><center>{{vm.translations.LASTNAME}}</center></th>
+            <th><center>{{vm.translations.EMAIL}}</center></th>
+             <th><center>Blocked</center></th>
+          </tr>
+        </thead>
+        <tbody ng-repeat="user in userCtrl.users">
+          <tr >
+            <td><input type="checkbox" name="users" value=" " ng-model="user.Selected"></td>
+            <td>{{user.firstname}}</td>
+           <td>{{user.lastname}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.isblocked}}</td>
+          </tr>
+          
+        </tbody>
+      </table>
+</div>
+
+</div>
+</div>

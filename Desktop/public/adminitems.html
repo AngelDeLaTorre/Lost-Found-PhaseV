@@ -1,0 +1,62 @@
+<div ng-controller="languageController">
+<div ng-controller="adminItemsController as itemCtrl">
+<div id = "AdminSearch">
+   <div  class="col-xs-6 col-md-10">
+              
+                 <input type="text" class="form-control" placeholder="{{vm.translations.SEARCH}}" id="searchBarUsers" ng-model="searchBarItem">
+            
+
+             </div>
+ 
+              
+   <div id ="searchUser">                        
+        <a id ="SearchBtn" class="btn btn-primary" role="button" ng-click=" itemCtrl.setValueForSearch(searchBarItem) ">{{vm.translations.SEARCH}}</a> 
+        
+      </div> 
+</div>
+
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div id = "headingUserList" class="panel-heading"> 
+
+   <div class="col-xs-6 col-md-8">    
+   <h4 align = "left"> <strong>{{vm.translations.ITEMS}}</strong></h4>
+
+</div>
+              
+        <a  id ="BlockBtn" class="btn btn-primary" role="button" ng-click ="itemCtrl.getSelectedForBlock()" >{{vm.translations.BLOCK}}</a> 
+        <a  id ="UnblockBtn" class="btn btn-primary" role="button" ng-click="itemCtrl.getSelectedForUNBlock()" >{{vm.translations.UNBLOCK}}</a> 
+
+  </div>
+  <!-- <div class="panel-body">
+    <p></p>
+  </div> -->
+ 
+  <!-- Table -->
+  <table class="table">
+        <thead>
+          <tr>
+            <th><center>{{vm.translations.SELECT}}</center></th>
+            <th><center>{{vm.translations.ITEMID}}</center></th>
+            <th><center>{{vm.translations.ITEMNAME}}</center></th>
+            <th><center>{{vm.translations.EMAIL}}</center></th>
+             <th><center>Blocked</center></th>
+          </tr>
+        </thead>
+        <tbody ng-repeat="item in itemCtrl.items">
+          <tr>
+            <td><input type="checkbox" name="users" value=" " ng-model="item.Selected"></td>
+            <td><a ui-sref="form.admin.comments" ng-click="itemCtrl.setValue(item.itemid); gotoTop()">{{item.itemid}}</a></td>
+            <td>{{item.itemname}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.isblocked}}</td>
+          </tr>
+          
+        </tbody>
+      </table>
+</div>
+
+</div>
+</div>
+</div>

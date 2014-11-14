@@ -1,0 +1,60 @@
+
+<div ng-controller="addCommentController as commentCtrl">
+    <div class="container2" ng-controller="languageController">
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="well well-sm">
+                        <div class="row">
+
+                            <div id = "forTextArea"class="col-md-12 col-sm-12 col-xs-12">
+                                
+
+                                    <div class ="fields">
+
+                                            <label for="Email">
+                                                {{vm.translations.EMAIL}}</label>
+                                                <input type="input" class="form-control"  placeholder=" {{vm.translations.EMAIL}} " ng-model="commentCtrl.objectComment.email">
+
+                                                
+                                    </div>
+                            
+
+
+                                            
+                                                <div class="row">
+                                               <div class="col-sm-12 col-xs-8 ">
+                                                <label for="name">
+                                                {{vm.translations.COMMENT}}</label>
+                                                <textarea name="message" id="message" class="form-control" style="min-height: 200px" required="required"
+                                                placeholder="{{vm.translations.MESSAGE}}" ng-model="commentCtrl.objectComment.usercomment" ng-pattern = "commentCtrl.pattern.field"></textarea>
+</div>
+                                                <div class="row">
+                                                
+                                        </div>
+</div>
+                                                      
+
+
+                    </div>
+                    <div class="row">
+
+<div class="col-sm-8 col-xs-4 ">
+   </div> 
+    <div class="col-sm-12 col-xs-4 ">
+       <button type="submit" class="btn btn-primary " id="addCommentButton" ng-click="gotoTop();commentCtrl.getCommentObject(commentCtrl.objectComment)"ui-sref="form.viewitem({ item:commentCtrl.itemid})">
+                                                        {{vm.translations.ADD}}</button>
+                                            </div>
+    
+       </div> 
+       
+       </div> 
+                                              
+                                               
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,181 @@
+<div ng-controller="formController as formCtrl">
+<div class="row" ng-controller="languageController as vm" >
+
+<div class="col-sm-8 col-sm-offset-2">
+
+  <div id="form-container">
+  
+  <div class="page-header text-center">
+          <div class="layout">
+          <h1>LostFound</h1></div>
+  <div id="container" >
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container" >
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div  class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <form class="navbar-form pull-left">
+                <ul class="nav navbar-nav">
+                  
+                  <li>
+                        <a  ui-sref=".newsfeeds" ng-click="gotoTop()">  {{vm.translations.LOSTFOUND}}</a>
+                    </li>
+                    <li>
+                        <a  ui-sref="form.admin.login" ng-click="gotoTop()">  {{vm.translations.ADMIN}}</a>
+                    </li>
+                    <li>
+                        <a ui-sref="form.about" ng-click="gotoTop()">{{vm.translations.ABOUT}}</a>
+                    </li>
+                    <li>
+                        <a ui-sref="form.feedback" ng-click="gotoTop()">{{vm.translations.CONTACT}}</a>
+                    </li>
+                    <li>
+                        <a ui-sref="form.help" ng-click="gotoTop()">{{vm.translations.HELP}}</a>
+                    </li>
+                  
+                </ul>
+              </form >
+               <form class="navbar-form pull-right hidden-sm">
+              <input type="text" class="form-control input-sm"  placeholder="{{vm.translations.EMAIL}}" ng-model="formCtrl.myemail" >
+              <input type="text" class="form-control input-sm"  placeholder="{{vm.translations.SECRETKEY}}" ng-model="formCtrl.mykey" >
+              <a ui-sref="form.myposts" ng-click="formCtrl.getCredentials.(formCtrl.myemail, formCtrl.mykey)" class="btn btn-small" role="button" >{{vm.translations.MYPOST}}</a>
+            </form>
+
+            <form class="navbar-form pull-right hidden-md hidden-lg">
+                <div id="status-buttons" class="text-right">
+             <a class="centre" ui-sref-active="active" ng-click="gotoTop()" ui-sref=".reportlost"><span>*</span>Lost</a>
+              <a  class="centre" ui-sref-active="active" ng-click="gotoTop()" ui-sref=".newsfeeds"><span>*</span>{{vm.translations.HOME}}</a>
+              <a class="centre" ui-sref-active="active" ng-click="gotoTop()" ui-sref=".reportfound"><span>*</span>Found</a>
+          </div>
+        </form>
+               
+            </div>
+            <!-- /.navbar-collapse -->
+
+        </div>
+
+        <!-- /.container -->
+    </nav>
+ 
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+
+
+    
+   
+  </div><!--
+
+   /.container-fluid -->
+          <!-- the links to our nested states using relative paths -->
+          <!-- add the active class if the state matches our ui-sref -->
+        <div class="col-sm-12 col-xs-12 text-center">
+          <div id="status-buttons"   >
+              <row>
+              <a ui-sref-active="active" ng-click="gotoTop()" ui-sref=".reportlost"><span>*</span>Lost </a></row>
+             <row> <a ui-sref-active="active" ng-click="gotoTop()" ui-sref=".newsfeeds"><span>*</span> {{vm.translations.HOME}}</a></row>
+              <row><a ui-sref-active="active" ng-click="gotoTop()" ui-sref=".reportfound"><span>*</span>Found</a></row>
+          </div>
+        </div>
+      </div>
+      
+      <!-- use ng-submit to catch the form submission and use our Angular function -->
+     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+          <!-- our nested state views will be injected here -->
+          <div id="form-views" ui-view class="ng-scope" style="min-height: 1000px;"></div>
+    </div>
+      
+
+  </div>
+ 
+  <!-- show our formData as it is being typed
+  <pre>
+    {{ formData }}
+  </pre>
+ -->
+</div>
+
+ <div id="containerfooter">
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-form pull-right">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" >
+                    
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+               
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <li id="languageselect">
+            <select  class="form-control input-sm" ng-change="vm.onchangeLanguage()" ng-model="vm.language">
+            <option value="en">English</option>
+            <option value="sp">Spanish</option>
+             </select>
+                    </li>
+                    
+                       
+             
+             
+                  
+                    
+                </ul>
+                 <form class="navbar-form pull-right hidden-sm">
+                <div id="status-buttons" class="text-right">
+             <a class="centre" ui-sref-active="active" ng-click="gotoTop()" ui-sref=".reportlost"><span>*</span>Lost</a>
+              <a  class="centre" ui-sref-active="active" ng-click="gotoTop()" ui-sref=".newsfeeds"><span>*</span>{{vm.translations.HOME}}</a>
+              <a class="centre" ui-sref-active="active" ng-click="gotoTop()" ui-sref=".reportfound"><span>*</span>Found</a>
+          </div>
+        </form>
+
+  <form class="navbar-form pull-right hidden-md hidden-lg ">
+              <input type="text" class="form-control input-sm"  placeholder="{{vm.translations.SECRETKEY}}" ng-model="formCtrl.mykey" >
+              <input type="text" class="form-control input-sm"  placeholder="{{vm.translations.SECRETKEY}}" ng-model="formCtrl.mykey" >
+              <a ui-sref="form.myposts" ng-click="formCtrl.getCredentials.(formCtrl.myemail, formCtrl.mykey)" class="btn btn-small" role="button" >{{vm.translations.MYPOST}}</a>
+            </form>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+ 
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+
+
+    
+   
+  </div><!-- /.container-fluid -->
+</div>
+</div>
+

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+      <head>
+          <meta charset="utf-8">
+
+          <!-- CSS -->
+          
+           <link rel="stylesheet" href="bootstrap-3.2.0-dist/css/local.bootstrap.min.css">
+           <link rel="stylesheet" href="style.css">
+         
+          <!-- JS -->
+          <!-- load angular, nganimate, and ui-router -->
+         
+          <script src="angular-1.2.22/local.angular.min.js"></script>
+          <script src="angular-1.2.22/local.angular-ui-router.min.js"></script>
+          <script src="angular-1.2.22/angular-resource.js"></script>
+          <script src="angular-1.2.22/angular-route.min.js"></script>
+          <script src="angular-1.2.22/local.angular-animate.min.js"></script>
+          <script src="/client.js"></script>
+          <script src="controllers/module1.js"></script>
+          <script src="controllers/addCommentController.js"></script>
+          <script src="controllers/newsfeedsController.js"></script>
+          <script src="controllers/foundController.js"></script>
+          <script src="controllers/lostController.js"></script>
+          <script src="controllers/feedbackController.js"></script>
+          <script src="Services/httpService.js"></script>
+          <script src="controllers/myPostsController.js"></script>
+          <script src="controllers/LoginCtrl.js"></script>
+          <script src="controllers/formController.js"></script>
+          <script src="controllers/editItemController.js"></script>
+          <script src="controllers/helpController.js"></script>
+          <script src="Services/translationService.js"></script>
+          <script src="Services/fileModel.js"></script>
+          <script src="Services/fileUpload.js"></script>
+          <script src="Services/shareDataService.js"></script>
+          <script src="controllers/reportItemController.js"></script>
+          <script src="Services/shareDataService.js"></script>
+          <script src="controllers/languageController.js"></script>
+          <script src="controllers/adminUsersController.js"></script>
+          <script src="controllers/adminSettingsController.js"></script>
+          <script src="controllers/adminCommentController.js"></script>
+          <script src="controllers/adminItemsController.js"></script>
+          <script src="controllers/categoryController.js"></script>
+          <script src="controllers/itemViewController.js"></script>
+          <script src="controllers/ScrollController.js"></script>
+          <script src="controllers/imageupload.js"></script>
+               
+      </head>
+
+      <body data-ng-app="app">
+        <!-- views will be injected here -->
+        <div  class="container" ng-controller="ScrollController" >
+          <div ui-view></div>
+        </div>
+             
+
+      </body>
+      
+</html>

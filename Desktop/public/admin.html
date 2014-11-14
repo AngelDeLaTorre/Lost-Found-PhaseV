@@ -1,0 +1,28 @@
+
+<div ng-controller="languageController">
+<ul class="nav nav-tabs" role="tablist" >
+                    
+                    <li>
+                        <a ui-sref="form.admin.login" ng-click="gotoTop()">{{vm.translations.LOGIN}}</a>
+                    </li>
+                    <li>
+                        <a ui-sref="form.admin.users" ng-click="gotoTop()">{{vm.translations.USERS}}</a>
+                    </li>
+                    <li>
+                        <a ui-sref="form.admin.items" ng-click="gotoTop()">{{vm.translations.ITEMS}}</a>
+                    </li>
+                   <!--  <li>
+                        <a ui-sref="form.admin.settings" ng-click="gotoTop()">{{vm.translations.CATEGORY}}</a>
+                    </li> -->
+                     <li>
+                        <a ui-sref="form.admin.settings" ng-click="gotoTop()">{{vm.translations.SETTINGS}}</a>
+                    </li>
+</ul>
+
+
+
+<div id="admin-views" ui-view></div>
+
+</div>
+
+

@@ -1,0 +1,75 @@
+
+
+<div ng-controller="foundController as foundCtrl">
+
+
+
+<nav class="navbar navbar-default" role="navigation">
+
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsible">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+     
+    </div>
+    
+    <div class="navbar-collapse collapse" id="navbar-collapsible">
+      
+      
+      
+      <div class="navbar-form navbar-left btn-group">
+     
+      <button type="button" class="btn btn-default " ui-sref="form.reportitem({itemStatus:'Found'})"  ng-click="gotoTop()">
+        {{vm.translations.REPORTFOUND}}  <span class="glyphicon glyphicon-circle-arrow-right"></span>
+      </button>
+      </div>
+      
+      <form class="navbar-form">
+        <div class="form-group" style="display:inline;">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="{{vm.translations.SEARCH}}" ng-model="searchLostItem">
+            <span class="input-group-addon" ng-click="foundCtrl.setItems(searchFoundItem)" ><span class="glyphicon glyphicon-search"></span></span>
+          </div>
+        </div>
+      </form>
+      
+
+    
+  </div>
+</nav>
+
+
+
+<div id="list" > 
+
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="foundItem in foundCtrl.foundItems">
+    <div class="row">
+  <div class="col-xs-6 col-md-4"><div class="itemimg"><img ng-src="{{foundItem.itempicture}}"  ui-sref="form.viewitem({ item:foundItem.itemid})" height="200" width="200"> </div></div>
+  <div class="col-xs-6 col-md-4"><h2 ><CENTER>{{foundItem.itemstatus}}</CENTER></h2><h4><CENTER> {{vm.translations.ITEMID}}: {{foundItem.itemid}}</CENTER></h4><h4><CENTER>{{vm.translations.CATEGORY}}: {{foundItem.category}}</CENTER></h4><h4><CENTER>{{foundItem.locationitem}}</CENTER></h4><h4><center> {{vm.translations.SEENBY}}: {{foundItem.itemviews}}</center></h4>
+ </div>
+  <div class="col-xs-6 col-md-4">  
+ 
+
+ <div class="thumbs ">
+   
+  <h3 ><center>{{foundItem.itemname}}</center></h3>
+ 
+ <center>
+
+ <button type="down" class="btn btn-large center" id="thumbsD" ng-click="foundCtrl.thumbsdownfunction(foundItem.itemid)"><span class="glyphicon glyphicon-thumbs-down custom"></span> </button></center></div>
+ </div>
+</div>
+
+  
+  </li>
+   
+  
+
+</ul>
+</div>
+</div>

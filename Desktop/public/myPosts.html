@@ -1,0 +1,45 @@
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div ng-controller="myPostsController as myPostsCtrl">
+    <style type="text/css">
+
+
+    #list{
+        padding-top: 5px;
+    }
+
+
+   
+</style>
+
+                
+<div id="list" > 
+ <h2 align="left">My Posts:</h2>
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="item in myPostsCtrl.myItems" >
+    <div class="row">
+  <div class="col-xs-6 col-md-4"><div class="itemimg">
+  <img ng-src="{{item.itempicture}}"  ui-sref="form.viewitemowner({item:item.itemid})" height="200" width="200"> 
+  </div></div>
+  <div class="col-xs-6 col-md-4"><h2 ><CENTER>{{item.itemstatus}}</CENTER></h2><h4><CENTER>{{vm.translations.ITEMID}}: {{item.itemid}}</CENTER></h4><h4><CENTER>{{item.locationitem}}</CENTER></h4><h4><center>{{vm.translations.SEENBY}}: {{item.itemviews}}</center></h4>
+ </div>
+  <div class="col-xs-6 col-md-4">  
+ 
+
+ <div class="thumbs ">
+   
+  <h3 ><center>{{item.itemname}}</center></h3>
+ 
+ <center>
+
+ </center></div>
+ </div>
+</div>
+
+  
+  </li>
+   
+  
+
+</ul>
+</div>
+</div>

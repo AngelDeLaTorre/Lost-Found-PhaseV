@@ -1,0 +1,380 @@
+/* BASIC STYLINGS
+============================================================================= */
+body                            { padding-top:20px; background:#cfdce4;}
+pre                             { margin-bottom:20px; 
+}
+
+.colorblack{
+    color: black;
+}
+div.layout
+{    width: 50%;
+    margin: 0 auto;
+  display: inline-block;
+  text-align: center;
+}
+.right{
+    padding-left: 50px;
+}
+.logginItemView{
+
+ padding-right: 100px;
+}
+div.centre
+{ 
+  text-align: center;
+  width: 600px;
+  display: block;
+  margin-left: 5px;
+  margin-right: 50px;
+}
+
+.custom{
+  color:#2F4F4F;
+  opacity:1;
+}
+
+.custom:active{
+  color:red
+}
+    .img-responsive{
+
+        padding-top:40px;
+        }
+#btnContactUs{
+  padding-left: 30px;
+}
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+}
+.fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+#categoryscroll{
+  color:black;
+}
+#feedbackCont{
+  position: center;
+}
+div.centrecontact
+{padding-right: 70px;
+  text-align: center;
+  width: 700px;
+  display: block;
+  margin-left: 5px;
+  margin-right: 50px;
+
+}
+#feedbackContainer{
+  width: 80%;
+}
+#feedbackTextBox{
+ padding-left: 50px;
+ height: 217px;
+  width: 350px;
+}
+#save {
+    width: 5.8em;  height: 2.8em;
+}
+#remove {
+    width: 5.8em;  height: 2.8em;
+}
+div.centreheader
+{
+    padding-left: 50px; padding-right: 50px
+  text-align: center;
+  
+  display: block;
+  margin-left: 30px;
+  margin-right: 50px;
+}
+
+.caption{
+  padding-right: 500px;
+
+}
+
+#AdminSearch{
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+}
+#SearchBtn{
+  width: 90px;
+  height: 40px;
+
+}
+#addCommentButton{
+  width: 90px;
+  height: 40px;
+
+}
+#BlockBtn{
+
+  width: 90px;
+  height: 40px;
+}
+
+#UnblockBtn{
+ 
+  width: 90px;
+  height: 40px;
+}
+#AddBtn{
+ 
+  width: 90px;
+  height: 40px;
+
+}
+.CheckBoxedit2{
+  padding-right: 130px;
+   padding-top: 20px;
+}
+#adminsetting{
+  padding-top: 10px;
+    
+}
+#forTextArea{
+  width: 615px;
+}
+.fields{
+  width: 350px;
+}
+#edit{
+  padding-left: 540px;
+}
+#languageselect{
+  padding-top: 15px;
+
+}
+#scretkeyuser{
+  padding-top: 15px;
+   padding-left: 10px;
+
+}
+
+#nameUser{
+  padding-top: 15px;
+  padding-left: 200px;
+ 
+
+
+
+}
+#buttongetmypost{
+  padding-top: 3px;
+padding-left: 10px;
+  
+   
+
+}
+
+
+#addadmin{
+  padding-left: 300px;
+    width: 50%;
+}
+
+.check{
+  padding-right: 650px;
+}
+.caddAdminButton{
+  padding-right: 50%;
+}
+.cont2{
+
+    width: 50%;
+    margin: 0 auto;
+  display: inline-block;
+}
+.navbar{
+    background:#0a1921;
+}
+.buttonLoginAdmin{
+    padding-top: 10px;
+}
+#secretkey{
+  padding-top: 10px;
+}
+.adminlogin{
+  padding-top: 10px;
+}
+.navbar-bar{
+    word-spacing: 30px;
+}
+.reportbtn{
+    padding-top: 10px;
+}
+.rowsecond{
+    padding-left: 1px;
+}
+.arrow{
+    padding-right: 10px;
+}
+.contact{
+    padding-right: 2000px;
+}
+.well-sm{
+    padding-rigth: 100px;
+}
+.list-group-item{
+    background:#cfdce4;
+    color:#0a1921;
+  
+    border-color:#0a1921; 
+    border-radius: 20px;
+}
+.about{
+  color: #2A4D58;
+  text-align: left;
+}
+#bs-example-navbar-collapse-1{
+    padding-top: 5px;
+}
+#paddingCommentBox{
+  padding-right: 160px;
+}
+#editItemView{
+  padding-right: 95px;
+
+}
+#picFeedback{
+  width: 35%;
+  padding-top: 17px;
+  padding-left: 30px;
+
+}
+#AdminCategory{
+  padding-top: 10px;
+
+}
+#LostStatusBtn{
+  padding-right: 8px;
+}
+
+#resetKeyEmail{
+  width: 100%;
+  padding-right: 40px;
+  padding-bottom: 10px
+
+}
+#rowGetKey{
+padding-left: 100px;
+  
+}
+#helpTitle{
+  padding-right: 15px;
+}
+.btnhelp{
+  padding-top: 10px;
+}
+#getKeyBtn{
+  padding-left: 20px;
+ height: 35px;
+ width: 110px;
+font-size:12px;
+
+
+}
+
+textarea { width: 100%; margin: 0; padding: 0; border-width: 0; }
+ 
+
+/* form styling */
+#form-container               { background:#9db6d7; margin-bottom:100px; 
+    border-radius:5px; }
+#form-container   {padding-left: 50px; background:#9db6d7; margin:0; padding:30px; 
+    border-top-left-radius:5px; border-top-right-radius:5px; }
+
+/* numbered buttons */
+#status-buttons                 {  padding-top: 10px; }
+#status-buttons a               { color:#567884; display:inline-block; font-size:12px; text-align:center; text-transform:uppercase; }
+#status-buttons a:hover         { text-decoration:none; }
+#status-buttons span            { background:#080808; display:block; height:30px; margin:0 auto 10px; padding-top:5px; width:30px; 
+    border-radius:50%; }
+
+/* active buttons */
+#status-buttons a.active span   { background:#2F4F4F; }
+
+/* numbered buttons */
+#status-buttons2                 {  padding-top:5px;}
+#status-buttons2 a               { color:#567884; display:inline-block; font-size:8px; margin-right:10px; margin-bottom:0px;text-align:center; text-transform:uppercase; }
+#status-buttons2 a:hover         { text-decoration:none; }
+#status-buttons2 span            { padding-bottom:0px; background:#080808; display:block; height:20px; margin:1px; padding-top:1px; width:20px; 
+    border-radius:50%; }
+
+/* active buttons */
+#status-buttons2 a.active span   { background:#2F4F4F; }
+
+/* ANIMATION STYLINGS
+============================================================================= */
+#signup-form            { position:relative; min-height:600px; overflow:hidden; padding:30px; }
+
+/* basic styling for entering and leaving */
+/* left and right added to ensure full width */
+#form-views.ng-enter,
+#form-views.ng-leave      { position:absolute; left:30px; right:30px;
+    transition:0.5s all ease; -moz-transition:0.5s all ease; -webkit-transition:0.5s all ease; 
+}
+    
+/* enter animation */
+#form-views.ng-enter            { 
+    -webkit-animation:slideInRight 0.5s both ease;
+    -moz-animation:slideInRight 0.5s both ease;
+    animation:slideInRight 0.5s both ease; 
+}
+
+/* leave animation */
+#form-views.ng-leave            { 
+    -webkit-animation:slideOutLeft 0.5s both ease;
+    -moz-animation:slideOutLeft 0.5s both ease;
+    animation:slideOutLeft 0.5s both ease;   
+}
+#message {
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+    background: white;
+}
+#message.ng-invalid {
+    color:black;
+    
+    background-color: red;
+}
+
+
+/* ANIMATIONS
+============================================================================= */
+/* slide out to the left */
+@keyframes slideOutLeft {
+    to      { transform: translateX(-200%); }
+}
+@-moz-keyframes slideOutLeft {  
+    to      { -moz-transform: translateX(-200%); }
+}
+@-webkit-keyframes slideOutLeft {
+    to      { -webkit-transform: translateX(-200%); }
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+    from    { transform:translateX(200%); }
+    to      { transform: translateX(0); }
+}
+@-moz-keyframes slideInRight {
+    from    { -moz-transform:translateX(200%); }
+    to      { -moz-transform: translateX(0); }
+}
+@-webkit-keyframes slideInRight {
+    from    { -webkit-transform:translateX(200%); }
+    to      { -webkit-transform: translateX(0); }
+}

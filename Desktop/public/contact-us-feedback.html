@@ -1,0 +1,70 @@
+<div class="row">
+        <div class="col-sm-12 col-xs-12 col-centered" > 
+<div ng-controller="feedbackController as feedbackCtrl">
+<div class="container" ng-controller="languageController as vm">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="well well-sm" id="feedbackContainer">
+                <form>
+                <div class="row">
+                   
+                    <div id = "picFeedback"class="col-sm-6">
+
+                        <p align="left">
+                       <img src="http://www.ripepersonalchef.com/wp-content/uploads/2013/05/CLIENT-feedback-PAGE.jpg" heigth=250 width= 225>
+                        </p>
+                        <div >
+            <form>
+                 <p align = "left">
+            <h3>{{vm.translations.CONTACT}}</h3> 
+        
+               
+            
+               <strong>Angel De La Torre </strong><u>angel.delatorre@upr.edu</u>
+             
+                <br><strong>Irving Ramirez </strong><u>irving.ramirez@upr.edu</u>
+           
+                <br><strong>Maria Rivera </strong><u>maria.rivera30@upr.edu</u>
+         
+           </p>
+            </form>
+        </div>
+                    </div>
+                    <div  class="col-md-6">
+
+                        <div class="form-group" >
+                            <input type="text" class="form-control" id="name" placeholder="{{vm.translations.EMAIL}}" required="require" ng-model="feedbackCtrl.objectMessage.email">
+                            <label for="name">
+                                {{vm.translations.FEEDBACK}}</label>
+                            <textarea  name="message"  class="form-control"  h required="required"
+                                placeholder="{{vm.translations.MESSAGE}}" ng-model="feedbackCtrl.objectMessage.message"></textarea>
+                        </div>
+                        <div >
+                      
+                        <button  type="submit" ng-click="gotoTop(); feedbackCtrl.getComment(feedbackCtrl.objectMessage)" class="btn btn-primary pull-right" id="btnContactUs">
+                            {{vm.translations.SENDMESSAGE}}</button>
+                   
+                         </div>
+                     </div>
+         
+                    </div>
+            
+
+
+            
+
+
+                   
+                </div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+</div>
+    </div>
+</div>
+
+
+
+
