@@ -1,6 +1,6 @@
 /* BASIC STYLINGS
 ============================================================================= */
-body                            { padding-top:20px; background:#cfdce4;}
+body                            { padding-top:20px; background-image: url(shiny-black-cubes-4336.jpg);}
 pre                             { margin-bottom:20px; 
 }
 
@@ -297,14 +297,14 @@ textarea { width: 100%; margin: 0; padding: 0; border-width: 0; }
     border-top-left-radius:5px; border-top-right-radius:5px; }
 
 /* numbered buttons */
-#status-buttons                 {  padding-top: 10px; }
-#status-buttons a               { color:#567884; display:inline-block; font-size:12px; text-align:center; text-transform:uppercase; }
-#status-buttons a:hover         { text-decoration:none; }
-#status-buttons span            { background:#080808; display:block; height:30px; margin:0 auto 10px; padding-top:5px; width:30px; 
+#status-buttons                 {  padding-top: 10px;  padding-left:20px;}
+#status-buttons a               { color:#cfdce4; display:inline-block;  padding-right:20px; font-size:12px; text-align:center; text-transform:uppercase; }
+#status-buttons a:hover         { text-decoration:none; padding-right:20px;}
+#status-buttons span            { background:#080808; display:block;padding-right:20px; height:30px; margin:0 auto 10px; padding-top:5px; width:30px; 
     border-radius:50%; }
 
 /* active buttons */
-#status-buttons a.active span   { background:#2F4F4F; }
+#status-buttons a.active span   { background:#cfdce4; }
 
 /* numbered buttons */
 #status-buttons2                 {  padding-top:5px;}
@@ -314,7 +314,7 @@ textarea { width: 100%; margin: 0; padding: 0; border-width: 0; }
     border-radius:50%; }
 
 /* active buttons */
-#status-buttons2 a.active span   { background:#2F4F4F; }
+#status-buttons2 a.active span   { background:#9db6d7; }
 
 /* ANIMATION STYLINGS
 ============================================================================= */
@@ -347,8 +347,13 @@ textarea { width: 100%; margin: 0; padding: 0; border-width: 0; }
 }
 #message.ng-invalid {
     color:black;
-    
-    background-color: red;
+    border-style: inset;
+    border-color: red;
+}
+#message.ng-valid {
+    color:black;
+    border-style: inset;
+    border-color: green;
 }
 
 

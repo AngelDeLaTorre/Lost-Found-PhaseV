@@ -25,6 +25,9 @@ var app =angular.module('app', ['formApp','ngAnimate', 'ui.router', 'ngResource'
        	event.preventDefault();
         		$state.transitionTo('form.admin.users');
        }
+
+     
+
     });
       });
 
