@@ -10,12 +10,20 @@ myPostsCtrl.credentials = {'myemail':shareData.credentials.myemail,
 
 
 myposts();
+
 function  myposts(){
 
 //alert(myPostsCtrl.credentials.myemail);
   restApi.getMyPosts( myPostsCtrl.credentials)
             .success(function (data) {
-              myPostsCtrl.myItems = data.myPosts;  
+              myPostsCtrl.myItems = data.myPosts; 
+              if(myPostsCtrl.myItems.length == 0)
+              {
+
+                   $state.transitionTo('form.newsfeeds');
+
+              }
+           
                             
               })
             .error(function (error) {

@@ -1,38 +1,42 @@
 <div ng-controller="languageController">
 <div ng-controller="adminUsersController as userCtrl">
-<div id = "AdminSearch" >
-   <div class="col-xs-6 col-md-10">
-              
-                 <input type="text" class="form-control" placeholder={{vm.translations.SEARCH}} id="searchBarUsers" ng-model="searchAdminUser">
-             </div>
- 
-              
-   <div id ="searchUser">                        
-        <a  id ="SearchBtn" class="btn btn-primary" role="button" ng-click="userCtrl.setValue(searchAdminUser)">{{vm.translations.SEARCH}}</a> 
-        
-      </div> 
-</div>
+<div class="row">
+   <div class="col-xs-12 col-sm-12  col-md-12">
+
+    <form class="navbar-form">
+        <div class="form-group" style="display:inline;">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="{{vm.translations.SEARCH}}" ng-model="searchAdminUser">
+            <span class="input-group-addon" ng-click="userCtrl.setValue(searchAdminUser)" ><span class="glyphicon glyphicon-search"></span></span>
+          </div>
+        </div>
+      </form>
+
+
 
 
 <div class="panel panel-default">
   <!-- Default panel contents -->
   <div id = "headingUserList" class="panel-heading"> 
-
-   <div class="col-xs-6 col-md-8">    
-   <h4 align = "left"> <strong>{{vm.translations.USERS}}</strong></h4>
-
-</div>
+<div class="row">
+   <div class="col-sm-8 col-md-8">   <h4 align = "left"> <strong>{{vm.translations.USERS}}</strong></h4></div>
+              <div class="col-sm-2 col-md-2">
               
-        <a id ="BlockBtn" class="btn btn-primary" role="button" ng-click ="userCtrl.getSelectedForBlock()">{{vm.translations.BLOCK}}</a> 
-        <a id ="UnblockBtn" class="btn btn-primary" role="button" ng-click ="userCtrl.getSelectedForUNBlock()">{{vm.translations.UNBLOCK}}</a> 
+        <a id ="BlockBtn" class="btn btn-primary" role="button" ng-click ="userCtrl.getSelectedForBlock()">{{vm.translations.BLOCK}}</a> </div>
+         <div class="col-sm-2 col-md-2">
+        <a id ="UnblockBtn" class="btn btn-primary" role="button" ng-click ="userCtrl.getSelectedForUNBlock()">{{vm.translations.UNBLOCK}}</a>  
 
+  </div>
+   </div>
   </div>
   <!-- <div class="panel-body">
     <p></p>
   </div> -->
  
   <!-- Table -->
-  <table class="table"  >
+  <div class = "row">
+ <div class="col-xs-12 col-sm-12 col-md-12">
+  <table class="table">
         <thead>
           <tr>
             <th><center>{{vm.translations.SELECT}}</center></th>
@@ -44,16 +48,19 @@
         </thead>
         <tbody ng-repeat="user in userCtrl.users">
           <tr >
-            <td><input type="checkbox" name="users" value=" " ng-model="user.Selected"></td>
-            <td>{{user.firstname}}</td>
-           <td>{{user.lastname}}</td>
-            <td>{{user.email}}</td>
-            <td>{{user.isblocked}}</td>
+            <td class="col-xs-1 col-sm-1 col-md-1"><input type="checkbox" name="users" value=" " ng-model="user.Selected"></td>
+            <td class="col-xs-2 col-sm-2 col-md-2">{{user.firstname}}</td>
+           <td class="col-xs-2 col-sm-2 col-md-2">{{user.lastname}}</td>
+            <td class="col-xs-4 col-sm-4 col-md-4">{{user.email}}</td>
+            <td class="col-xs-2 col-sm-2 col-md-2">{{user.isblocked}}</td>
           </tr>
           
         </tbody>
       </table>
 </div>
-
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
