@@ -5,7 +5,7 @@ var helpCtrl = this;
 helpCtrl.users = {};
 
 
-helpCtrl.getUser = function(){
+helpCtrl.getUser = function(message){
 	 restApi.getUsers()
             .success(function (data) {
               
@@ -18,7 +18,7 @@ helpCtrl.getUser = function(){
   angular.forEach(helpCtrl.users, function (user) {
   				if(helpCtrl.helpEmail === user.email)
   				{
-  					alert(helpCtrl.helpEmail)
+  					alert(message);
   					restApi.resetKey(helpCtrl.helpEmail)
            			 .success(function (data) {
               

@@ -36,8 +36,8 @@
                             <input type="text" class="form-control" id="name" placeholder="{{vm.translations.EMAIL}}" required="require" ng-model="feedbackCtrl.objectMessage.email">
                             <label for="name">
                                 {{vm.translations.FEEDBACK}}</label>
-                            <textarea  name="message"  class="form-control"  h required="required"
-                                placeholder="{{vm.translations.MESSAGE}}" ng-model="feedbackCtrl.objectMessage.message"></textarea>
+                            <textarea  name="message" id="message" class="form-control"  required="required"
+                                placeholder="{{vm.translations.MESSAGE}}" ng-model="feedbackCtrl.objectMessage.message" ng-pattern = "feedbackCtrl.pattern.field"></textarea>
                         </div>
                         <div >
                       

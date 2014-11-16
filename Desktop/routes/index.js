@@ -478,7 +478,35 @@ exports.getComments = function(req, res) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query(" SELECT  public.comment.usercomment , public.comment.email FROM public.comment, public.item WHERE comment.itemid = item.itemid AND comment.itemid = "+req.params.id+" ", function(err, result) {
+                   client.query(" SELECT public.comment.commentid, public.comment.usercomment , public.comment.email, public.comment.isblocked FROM public.comment, public.item WHERE comment.itemid = item.itemid AND comment.itemid = "+req.params.id+" AND comment.isblocked = 'false' ", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                var response = {
+                                "comments" : result.rows
+                                };
+                                res.status(200);
+                                res.json(response);
+                                console.log(response);
+                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                                client.end();
+                                });
+                   });
+
+};
+
+exports.getAdminComments = function(req, res) {
+    console.log("GET");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var client = new pg.Client(conString);
+    
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query(" SELECT public.comment.commentid, public.comment.usercomment , public.comment.email, public.comment.isblocked FROM public.comment, public.item WHERE comment.itemid = item.itemid AND comment.itemid = "+req.params.id+" ", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -866,261 +894,66 @@ exports.removeAdmin= function(req,res){
                                 });
                    });
 };
-/*exports.getDoctorById = function(req, res){
-    console.log("GET");
-    res.setHeader("Content-Type", "application/json");
-    
-    var id =req.params.id;
-    console.log(id);
-    
-    var client = new pg.Client(conString);
-	client.connect(function(err) {
+
+exports.blockAdminComment= function(req,res){
+  console.log("POST");
+  var client = new pg.Client(conString);
+     
+  client.connect(function(err) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query('SELECT  * FROM public.doctors WHERE doctors.doctor_id  =$1',[id], function(err, result) {
-                                if (err) {
-                                return console.error('error running query', err);
-                                }
+            
+                   client.query("Update public.comment Set isblocked = 'true' Where commentid = '"+req.body.id+"'", function(err, result) {
                                
-                                var response = {
-                                "doctors" : result.rows
-                                };
-                              
-                                //res.write('hiola');
-                                res.status('200');
-                                res.json(response);
-                                console.log(id);
-                                console.log(response);
-                                //res.end();
-                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
-                                client.end();
-                                });
-                   });
-
-};
-exports.getDoctorsFromPatient = function(req,res){
-    console.log("GET");
-    var id=req.params.idP;
-	var client = new pg.Client(conString);
-	client.connect(function(err) {
-                   if (err) {
-                   return console.error('could not connect to postgres', err);
-                   }
-                   client.query('SELECT  doctors.doctor_id,                                doctor_name, doctor_last ,                                doctor_phone ,                                 doctor_direction ,                                doctor_link , doctor_email ,                                doctor_type , doctor_especialidad ,doctor_pueblo ,                               doctor_zipcode FROM public.doctors,public.patients JOIN public.appointments on  appointments.patient_id = patients.patient_id WHERE appointments.doctor_id  =$1 Group BY doctors.doctor_id;',[id], function(err, result) {
                                 if (err) {
                                 return console.error('error running query', err);
                                 }
-                                var response = {
-                                "doctors" : result.rows
-                                };
-                                res.json(response);
-                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
-                                client.end();
-                                });
-                   });
-
-};
-////Patients
-exports.getPatient = function(req, res) {
-    console.log("GET");
-    var id=req.params.idP;
-	var client = new pg.Client(conString);
-	client.connect(function(err) {
-                   if (err) {
-                   return console.error('could not connect to postgres', err);
-                   }
-                   client.query('SELECT  *  FROM public.patients where patients.patient_id  =$1',[id], function(err, result) {
-                                if (err) {
-                                return console.error('error running query', err);
-                                }
-                                var response = {
-                                "patient" : result.rows
-                                };
-                                res.json(response);
-                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
-                                client.end();
-                                });
-                   });
-
-};
-
-
-exports.getPatientById = function(req, res){
-    console.log("GET");
-    var id=req.params.idP;
-	var client = new pg.Client(conString);
-	client.connect(function(err) {
-                   if (err) {
-                   return console.error('could not connect to postgres', err);
-                   }
-                   client.query('SELECT  *  FROM public.patients where patients.patient_id =$1; ',[id], function(err, result) {
-                                if (err) {
-                                return console.error('error running query', err);
-                                }
-                                var response = {
-                                "patient" : result.rows
-                                };
-                                res.json(response);
-                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                                
+                                res.status(200);
                                 client.end();
                                 });
                    });
 };
 
-exports.getPatientFromDoctor = function(req, res){
-    console.log("GET");
-    var id=req.params.idP;
-	var client = new pg.Client(conString);
-	client.connect(function(err) {
+exports.unblockAdminComment= function(req,res){
+  console.log("POST");
+  var client = new pg.Client(conString);
+     
+  client.connect(function(err) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query('SELECT  *  FROM public.doctors,public.patients,public.appointments WHERE appointments.doctor_id= doctors.doctor_id and doctors.doctor_id =$1 GROUP BY patients.patient_id; ',[id], function(err, result) {
+            
+                   client.query("Update public.comment Set isblocked = 'false' Where commentid = '"+req.body.id+"'", function(err, result) {
+                               
                                 if (err) {
                                 return console.error('error running query', err);
                                 }
-                                var response = {
-                                "patient" : result.rows
-                                };
-                                res.json(response);
-                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                                
+                                res.status(200);
                                 client.end();
                                 });
                    });
 };
 
-
-
-
-exports.getAppointmentsFromDoc = function(req, res) {
-    console.log("GET");
-    var id=req.params.idD;
-	var client = new pg.Client(conString);
-	client.connect(function(err) {
+exports.addSeen= function(req,res){
+  console.log("POST");
+  var client = new pg.Client(conString);
+     
+  client.connect(function(err) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query('SELECT  *  FROM public.appointments JOIN public.patients on  appointments.patient_id = patients.patient_id WHERE appointments.doctor_id  =$1; ',[id], function(err, result) {
+            
+                   client.query("Update public.item Set itemviews = (itemviews + 1) Where itemid = '"+req.body.id+"'", function(err, result) {
+                               
                                 if (err) {
                                 return console.error('error running query', err);
                                 }
-                                var response = {
-                                "appointment" : result.rows
-                                };
-                                res.json(response);
-                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                                
+                                res.status(200);
                                 client.end();
                                 });
                    });
 };
-
-exports.getAppointmentsFromPatient = function(req, res) {
-    console.log("GET");
-    var id=req.params.idP;
-	var client = new pg.Client(conString);
-	client.connect(function(err) {
-                   if (err) {
-                   return console.error('could not connect to postgres', err);
-                   }
-                   client.query('SELECT  *  FROM public.appointments JOIN public.doctors on  appointments.doctor_id =doctors.doctor_id  WHERE appointments.patient_id  =$1; ',[id], function(err, result) {
-                                if (err) {
-                                return console.error('error running query', err);
-                                }
-                                var response = {
-                                "appointment" : result.rows
-                                };
-                                res.json(response);
-                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
-                                client.end();
-                                });
-                   });};
-
-exports.getAppointmentById = function(req, res){
-    console.log("GET");
-    var id=req.params.idA;
-	var client = new pg.Client(conString);
-	client.connect(function(err) {
-                   if (err) {
-                   return console.error('could not connect to postgres', err);
-                   }
-                   client.query('SELECT * FROM public.appointments WHERE appointments.app_id = $1',[id], function(err, result) {
-                                if (err) {
-                                return console.error('error running query', err);
-                                }
-                                var response = {
-                                "appointment" : result.rows
-                                };
-                                res.json(response);
-                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
-                                client.end();
-                                });
-                   });
-};
-
-exports.getAppointmentsByIdAndDate = function(req, res){
-   /* console.log("GET");
-    var id=req.params.idD;
-	var client = new pg.Client(conString);
-	client.connect(function(err) {
-                   if (err) {
-                   return console.error('could not connect to postgres', err);
-                   }
-                  client.query('SELECT * FROM  public.appointments  JOIN public.patients on  appointments.patient_id = patients.patient_id   WHERE  appointments.app_fecha >= '2014-03-03 00:00:00' AND  appointments.app_fecha < '2014-03-04 00:00:00' AND appointments.doctor_id=1 ;    ',[id], function(err, result)* {
-                                if (err) {
-                                return console.error('error running query', err);
-                                }
-                                var response = {
-                                "appointment" : result.rows
-                                };
-                                res.json(response);
-                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
-                                client.end();
-                                });
-                   });
-};
-
-exports.getAppointmentsPendingFromDoctor = function(req, res){
-    console.log("GET");
-    var id=req.params.idD;
-	var client = new pg.Client(conString);
-	client.connect(function(err) {
-                   if (err) {
-                   return console.error('could not connect to postgres', err);
-                   }
-                   client.query('SELECT  * FROM   public.appointments   JOIN public.patients on  appointments.patient_id = patients.patient_id     WHERE  appointments.app_statusdoc = 0 AND appointments.doctor_id=$1  ;',[id], function(err, result) {
-                                if (err) {
-                                return console.error('error running query', err);
-                                }
-                                var response = {
-                                "appointment" : result.rows
-                                };
-                                res.json(response);
-                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
-                                client.end();
-                                });
-                   });
-};
-
-exports.getAppointmentsCanceledFromDoctor = function(req, res){
-  /*  console.log("GET");
-    var id=req.params.idD;
-	var client = new pg.Client(conString);
-	client.connect(function(err) {
-                   if (err) {
-                   return console.error('could not connect to postgres', err);
-                   }
-                   client.query('SELECT  * FROM   public.appointments   JOIN public.patients on  appointments.patient_id = patients.patient_id     WHERE  appointments.app_cancel = 1 AND appointments.doctor_id=1  ;',[id], function(err, result) {
-                                if (err) {
-                                return console.error('error running query', err);
-                                }
-                                var response = {
-                                "appointment" : result.rows
-                                };
-                                res.json(response);
-                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
-                                client.end();
-                                });
-                   });
-};*/
-
