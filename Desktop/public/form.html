@@ -7,7 +7,7 @@
   
   <div class="page-header text-center">
     <div class ="row">
-                <div class="col-sm-4 col-md-12 col-xs-8 ">
+                <div class="col-sm-4 col-md-12 col-xs-6 ">
           <div class="layout">
             <img src="coollogo_com-259501088.gif">
          </div> 
@@ -50,7 +50,7 @@
                   
                 </ul>
               </form >
-               <form class="navbar-form pull-right hidden-sm">
+               <form class="navbar-form pull-right hidden-sm ">
               <input type="text" class="form-control input-sm"  placeholder="{{vm.translations.EMAIL}}" ng-model="formCtrl.myemail" >
               <input type="text" class="form-control input-sm"  placeholder="{{vm.translations.SECRETKEY}}" ng-model="formCtrl.mykey" >
               <a ui-sref="form.myposts" ng-click="formCtrl.getCredentials.(formCtrl.myemail, formCtrl.mykey)" class="btn btn-small" role="button" >{{vm.translations.MYPOST}}</a>
@@ -94,7 +94,7 @@
    /.container-fluid -->
           <!-- the links to our nested states using relative paths -->
           <!-- add the active class if the state matches our ui-sref -->
-        <div class="col-sm-12 col-xs-12 text-center hidden-sm">
+        <div class="col-sm-12 col-xs-12 text-center hidden-sm hidden-xs">
           <div id="status-buttons"   >
               <div class ="row">
                 <div class="col-sm-4 col-md-4"></div>
