@@ -26,8 +26,10 @@
           <input id ="resetKeyEmail" type="text" class="form-control input-sm"  placeholder="{{vm.translations.EMAIL}}" ng-model="helpCtrl.helpEmail" >
             </div>
 
+
             <div class="col-sm-1 col-md-2">
-            <button id="getKeyBtn" class="btn btn-small btn-primary" name="Continue" ng-click="helpCtrl.getUser()" >
+            <button id="getKeyBtn" class="btn btn-small btn-primary" name="Continue" ng-click="helpCtrl.getUser(vm.translations.EMAILSENT)" >
+
     <span>{{vm.translations.RESETKEY}}</span>
     
 </button>

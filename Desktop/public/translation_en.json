@@ -85,7 +85,8 @@
 	"COMMENTTEXT":"Comments lets users comment and comunicate with other users who have search for their lost items.",
 	"CONTACTUSTEXT":"Contact Us contains all the contact information of the administrators and also a feedback section to make suggestions, complains and comments of the LostFound Application.",
 	"REPORTITEM":"Report Item",
-	"VIEWITEM":"View Item"
+	"VIEWITEM":"View Item",
+	"EMAILSENT":"Email sent."
 
 
 }

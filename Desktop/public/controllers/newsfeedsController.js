@@ -13,6 +13,8 @@ newsfeedCtrl.isDisabled= true;
 
 
 
+
+
   getItems();  
   function getItems() {
         restApi.getItems()
@@ -46,11 +48,21 @@ newsfeedCtrl.thumbsdownfunction = function(id){
 
                 newsfeedCtrl.status = 'Unable to load customer data: ' + error.message;
             });
+
+
+};
+
+
+newsfeedCtrl.addSeen = function(id){
   
+  restApi.addSeen(id)
+  .success(function (data){
 
+  })
+  .error(function (error){
+    newsfeedCtrl.status='Unable to load customer data: ' +error.message;
+  });
 
-   // newsfeedCtrl.isDisabled= true;
-   // location.reload();
 };
 
 

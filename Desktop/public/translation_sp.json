@@ -85,6 +85,7 @@
 	"COMMENTTEXT":"Comentarios permite a los usuarios comentar y comunicarse con otros usuarios para encontrar sus objectos perdidos.",
 	"CONTACTUSTEXT":"Contactos contiene toda la información de contacto de los administradores y también una sección de comentarios para hacer sugerencias y hacer comentarios de la aplicación LostFound.",
 	"REPORTITEM":"Reportar Objeto",
-	"VIEWITEM":"Ver Objeto"
+	"VIEWITEM":"Ver Objeto",
+	"EMAILSENT":"Correo enviado."
 	
 	}

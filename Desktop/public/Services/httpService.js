@@ -15,6 +15,7 @@
         getLostItems:getLostItems,
         getFoundItems:getFoundItems,
         getComments:getComments,
+        getAdminComments:getAdminComments,
         getUserAdmin:getUserAdmin,        
         postUser:postUser,
         postComment:postComment,
@@ -35,7 +36,10 @@
         updateItem:updateItem,
         resetKey:resetKey,
         getLostItemsSearch:getLostItemsSearch,
-        getFoundItemsSearch:getFoundItemsSearch
+        getFoundItemsSearch:getFoundItemsSearch,
+        blockAdminComment:blockAdminComment,
+        unblockAdminComment:unblockAdminComment,
+        addSeen:addSeen
 
      
 
@@ -191,7 +195,24 @@
     return $http.get('/anFoundItem/'+id);
   };
 
+  function getAdminComments(id){
+    return $http.get('/allAdminComments/'+id);
+  };
 
+  function blockAdminComment(id){
+    var data = {id:id};
+    return $http.post('/blockAdminComment/',data);
+  };
+
+  function unblockAdminComment(id){
+    var data = {id:id};
+    return $http.post('/unblockAdminComment/',data);
+  };
+
+  function addSeen(id){
+    var data = {id:id};
+    return $http.post('/addSeen/',data);
+  };
 
 }
 

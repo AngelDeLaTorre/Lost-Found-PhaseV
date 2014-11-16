@@ -55,5 +55,17 @@ lostCtrl.searchLostItem ={};
             });
 
 };
+
+lostCtrl.addSeen = function(id){
+  
+  restApi.addSeen(id)
+  .success(function (data){
+
+  })
+  .error(function (error){
+    newsfeedCtrl.status='Unable to load customer data: ' +error.message;
+  });
+
+};
   
 }]);

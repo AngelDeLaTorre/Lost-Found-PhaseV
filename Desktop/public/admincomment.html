@@ -19,13 +19,16 @@
   <!-- Default panel contents -->
   <div id = "headingUserList" class="panel-heading"> 
 
-<div class="row">
-   <div class="col-sm-8 col-md-8">   <h4 align = "left"> <strong>{{vm.translations.COMMENTS}}</strong></h4></div>
-              <div class="col-sm-4 col-md-4">
-        <a href="#" id ="BlockBtn" class="btn btn-primary" role="button" ng-click ="commentCtrl.getSelectedForBlock()">{{vm.translations.BLOCK}} </a> 
-    
+      
+   
 
-        <a href="#" id ="UnblockBtn" class="btn btn-primary" role="button" ng-click ="commentCtrl.getSelectedForUNBlock()">{{vm.translations.UNBLOCK}}</a> 
+<div class="row">
+   <div class="col-sm-8 col-md-8"> <h4 align = "left"> <strong>{{vm.translations.COMMENT}}</strong></h4></div>
+              <div class="col-sm-2 col-md-2">
+        <a id ="BlockBtn" class="btn btn-primary" role="button" ng-click ="commentCtrl.getSelectedForBlock()">{{vm.translations.BLOCK}} </a> </div>
+     <div class="col-sm-2 col-md-2">
+
+        <a id ="UnblockBtn" class="btn btn-primary" role="button" ng-click ="commentCtrl.getSelectedForUNBlock()">{{vm.translations.UNBLOCK}}</a> 
           </div>
  </div>
   </div>
@@ -40,14 +43,16 @@
             <th><center>{{vm.translations.SELECT}}</center></th>
             <th><center>{{vm.translations.COMMENT}}</center></th>
             <th><center>{{vm.translations.EMAIL}}</center></th>
+            <th><center>Blocked</center></th>
           </tr>
         </thead>
         <tbody ng-repeat="comment in commentCtrl.comments">
           <tr>
            
-            <td class="col-xs-2 col-sm-2 col-md-2"><input type="checkbox" name="users" value=" " ng-model="comment.Selected"></td>
+            <td class="col-xs-1 col-sm-1 col-md-1"><input type="checkbox" name="users" value=" " ng-model="comment.Selected"></td>
             <td class="col-xs-5 col-sm-5 col-md-5">{{comment.usercomment}}</td>      
-            <td class="col-xs-5 col-sm-5 col-md-5">{{comment.email}}</td>
+            <td class="col-xs-3 col-sm-3 col-md-3">{{comment.email}}</td>
+            <td class="col-xs-3 col-sm-3 col-md-3">{{comment.isblocked}}</td>
           </tr>
           
         </tbody>

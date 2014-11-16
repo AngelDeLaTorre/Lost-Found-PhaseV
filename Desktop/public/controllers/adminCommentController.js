@@ -3,14 +3,15 @@ angular.module('formApp')
 .controller('adminCommentController',['$scope','$http','restApi','shareData' , function($scope,$http,restApi,shareData) {
 
 var commentCtrl = this;
-commentCtrl.comments = getComments;
+commentCtrl.comments = getAdminComments;
 commentCtrl.status = {};
  commentCtrl.getSelected = {};
 
-getComments();
-   function getComments() {
+getAdminComments();
+   
+function getAdminComments() {
         
-        restApi.getComments(shareData.commentofitem)
+        restApi.getAdminComments(shareData.commentofitem)
             .success(function (data) {
                 commentCtrl.comments = data.comments;              
                 
@@ -20,10 +21,18 @@ getComments();
             });
     };
 
+
     commentCtrl.getSelectedForBlock= function(){
     angular.forEach(commentCtrl.comments, function (comment) {
             if(comment.Selected){
-              alert(comment.email);
+              restApi.blockAdminComment(comment.commentid)
+            .success(function (data) {
+              
+               
+              })
+            .error(function (error) {
+                userCtrl.status = 'Unable to load customer data: ' + error.message;
+            });
             }
         });
 
@@ -31,7 +40,14 @@ getComments();
     commentCtrl.getSelectedForUNBlock= function(){
       angular.forEach(commentCtrl.comments, function (comment) {
                 if(comment.Selected){
-                  alert(comment.email);
+                   restApi.unblockAdminComment(comment.commentid)
+            .success(function (data) {
+              
+               
+              })
+            .error(function (error) {
+                userCtrl.status = 'Unable to load customer data: ' + error.message;
+            });
                 }
             });
 

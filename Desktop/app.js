@@ -85,6 +85,7 @@ app.get('/anItem/:id', routes.getItemsAdminSearchBar);
 app.get('/myPostsItems/:email/:key', routes.getMyPosts);
 app.get('/anLostItem/:id', routes.getLostItemsSearch);
 app.get('/anFoundItem/:id', routes.getFoundItemsSearch);
+app.get('/allAdminComments/:id', routes.getAdminComments);
 
 //posts
 // app.post('/aCategories',routes.postCategories);
@@ -100,10 +101,13 @@ app.post('/blockAdminUser/', routes.blockAdminUser);
 app.post('/unblockAdminUser/', routes.unblockAdminUser);
 app.post('/blockAdminItem/', routes.blockAdminItem);
 app.post('/unblockAdminItem/', routes.unblockAdminItem);
+app.post('/blockAdminComment/', routes.blockAdminComment);
+app.post('/unblockAdminComment/', routes.unblockAdminComment);
 app.post('/removeAdmin/', routes.removeAdmin);
 app.post('/updateUser/', routes.updateUser);
 app.post('/updateItem/', routes.updateItem);
 app.post('/resetKey/', routes.resetKey);
+app.post(/addSeen/, routes.addSeen);
 
 //app.post('/images', routes.addImage); // endpoint to post new images
 //block

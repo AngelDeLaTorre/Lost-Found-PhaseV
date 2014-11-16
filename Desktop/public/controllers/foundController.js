@@ -31,6 +31,8 @@ foundCtrl.searchFoundItem ={};
             .success(function (data) {
               
                 foundCtrl.foundItems = data.items;
+                alert(1)
+                alert(data.items.itemname)
               })
             .error(function (error) {
                 foundCtrl.status = 'Unable to load customer data: ' + error.message;
@@ -52,6 +54,18 @@ foundCtrl.searchFoundItem ={};
             .error(function (error) {
                 foundCtrl.status = 'Unable to load customer data: ' + error.message;
             });
+
+};
+
+foundCtrl.addSeen = function(id){
+  
+  restApi.addSeen(id)
+  .success(function (data){
+
+  })
+  .error(function (error){
+    newsfeedCtrl.status='Unable to load customer data: ' +error.message;
+  });
 
 };
 

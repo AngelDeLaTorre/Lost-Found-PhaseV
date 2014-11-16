@@ -49,9 +49,11 @@
 <ul class="list-group">
   <li class="list-group-item" ng-repeat="foundItem in foundCtrl.foundItems">
     <div class="row">
-  <div class="col-xs-12 col-md-4"><div class="itemimg"> <div class="col-sm-12 col-md-12 col-lg-12"><img ng-src="{{foundItem.itempicture}}"  ui-sref="form.viewitem({ item:foundItem.itemid})" height="200" width="200"></div> </div></div>
+
+  <div class="col-xs-12 col-md-4"><div class="itemimg"> <div class="col-sm-12 col-md-12 col-lg-12"><img ng-src="{{foundItem.itempicture}}"  ui-sref="form.viewitem({ item:foundItem.itemid})" ng-click="foundCtrl.addSeen(foundItem.itemid)" height="200" width="200"></div> </div></div>
   <div class="row">
   <div class="col-xs-12 col-md-4"><h2 ><CENTER>{{foundItem.itemstatus}}</CENTER></h2><h4><CENTER> {{vm.translations.ITEMID}}: {{foundItem.itemid}}</CENTER></h4><h4><CENTER>{{vm.translations.CATEGORY}}: {{foundItem.category}}</CENTER></h4><h4><CENTER>{{foundItem.locationitem}}</CENTER></h4><h4><center> {{vm.translations.SEENBY}}: {{foundItem.itemviews}}</center></h4>
+
  </div>
   <div class="row">
   <div class="col-xs-12 col-md-4">  
