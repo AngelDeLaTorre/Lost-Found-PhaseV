@@ -12,10 +12,11 @@
           <!--  <div> 
         <input type="file" file-model="myFile"></div> -->
 
-        <form action="" method="post" enctype="multipart/form-data">
+        <form name="picform"action="" method="post" enctype="multipart/form-data">
          <div class="upload">
-        <input type="file" name="upload" file-model="myFile"/>
+        <input type="file" name="upload" file-model="myFile" required="require" />
          </div>
+        
          </form>
 
 
@@ -24,7 +25,7 @@
        
             <div class="well well-sm">
 
-                <form>
+                <form name="reportItemForm">
                 <div class="row">
 
                    <div class="col-xs-6 col-md-6">
@@ -40,10 +41,10 @@
                             <input type="text" class="form-control" id="lastUser" placeholder="{{vm.translations.LASTNAME}}" required="require" ng-model="list.lastname">
                              <label for="Email">
                                 {{vm.translations.EMAIL}}</label>
-                            <input type="text" class="form-control" id="phone" placeholder="{{vm.translations.EMAIL}}" required="require" ng-model="list.email">
+                            <input type="email" class="form-control" id="phone" placeholder="{{vm.translations.EMAIL}}" required="require" ng-model="list.email">
                              <label for="phone">
                                 {{vm.translations.PHONENUM}}</label>
-                            <input type="text" class="form-control" id="phone" placeholder="787-655-5678" required="require" ng-model="list.phone">
+                            <input type="text" class="form-control" id="phone" placeholder="787-655-5678"  ng-model="list.phone">
                        
                         <div class="form-group">
                             <label for="location">
@@ -86,17 +87,13 @@
                                 placeholder="Message" ng-model="list.description" ng-pattern="reportItemCtrl.pattern.field" ></textarea>
                         </div class "left">
                        
-                         <label class="checkbox-inline">
- 
-      <input type="checkbox" id="inlineCheckbox1" value="option1"> {{vm.translations.CHECK1REP}}
-
-    </label>
+                         <div  class="progress" ng-show="reportItemCtrl.progress"><div class="progress-bar" ng-model="reportItemCtrl.progress" style="width:{{reportItemCtrl.progress}}%">{{reportItemCtrl.progress}}</div></div>
 
                     </div>
                      <div class="row" >
  <div class="col-xs-2 col-md-12">
         
-       <p><a  ui-sref="form.newsfeeds" ng-click="gotoTop(); reportItemCtrl.setValue(list,myFile)" class="btn btn-primary" role="button" >{{vm.translations.SUBMIT}}</a> </p>
+       <p><a   ng-disabled="!reportItemForm.$valid" ng-click=" reportItemCtrl.setValue(list,myFile)" class="btn btn-primary" role="button" >{{vm.translations.SUBMIT}}</a> </p>
 
       </div>  
       </div>   

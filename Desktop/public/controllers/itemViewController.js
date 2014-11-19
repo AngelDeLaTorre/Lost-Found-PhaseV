@@ -10,7 +10,9 @@ getComments();
 function getItemID(){
   restApi.getItemId($stateParams.item)
             .success(function (data) {
-                itemViewCntrl.item= data.item[0];              
+                itemViewCntrl.item= data.item[0]; 
+                itemViewCntrl.item.itemdate = itemViewCntrl.item.itemdate.substring(0,10);             
+               
                 
               })
             .error(function (error) {
