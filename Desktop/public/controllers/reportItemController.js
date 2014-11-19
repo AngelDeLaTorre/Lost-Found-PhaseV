@@ -1,7 +1,8 @@
 angular.module('formApp')
-.controller('reportItemController',['$scope','$http','$stateParams','restApi','shareData','fileUpload', function($scope,$http,$stateParams,restApi,shareData,fileUpload) {
+.controller('reportItemController',['$scope','$http','$stateParams','restApi','shareData','fileUpload','$state','$timeout', function($scope,$http,$stateParams,restApi,shareData,fileUpload,$state,$timeout) {
  var reportItemCtrl = this;
- 
+ reportItemCtrl.progress = 0;
+    prog =0;
 
  reportItemCtrl.pattern = {
 
@@ -39,19 +40,10 @@ angular.module('formApp')
                 $scope.status = 'Unable to load customer data: ' + error.message;
             });
 
-    
 
-     
+       
+reportItemCtrl.progressfunction();
 
-        
-       /*restApi.updateUser(editCtrl.item)
-
-            .success(function () {
-                             
-            })
-            .error(function (error) {
-                editCtrl.status = 'Unable to load customer data: ' + error.message;
-            });*/
 
      
 
@@ -74,6 +66,21 @@ angular.module('formApp')
         var uploadUrl = "/upload";
         fileUpload.uploadFileToUrl(file, uploadUrl);
   
+    };
+
+    reportItemCtrl.progressfunction = function(){
+        
+
+        if(prog ===100)
+            return $state.go('form.newsfeeds') ;
+
+              prog++;
+            reportItemCtrl.progress = prog;
+           
+            $timeout(reportItemCtrl.progressfunction,100);
+
+        
+
     };
    
 

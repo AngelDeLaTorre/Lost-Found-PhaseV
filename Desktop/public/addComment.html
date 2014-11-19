@@ -7,7 +7,7 @@
                 <div class="col-md-12">
                     <div class="well well-sm">
                         <div class="row">
-
+<form name="commentForm">
                             <div id = "forTextArea"class="col-md-12 col-sm-12 col-xs-12">
                                 
 
@@ -15,7 +15,7 @@
 
                                             <label for="Email">
                                                 {{vm.translations.EMAIL}}</label>
-                                                <input type="input" class="form-control"  placeholder=" {{vm.translations.EMAIL}} " ng-model="commentCtrl.objectComment.email">
+                                                <input type="email" class="form-control"  placeholder=" {{vm.translations.EMAIL}} " required="required" ng-model="commentCtrl.objectComment.email">
 
                                                 
                                     </div>
@@ -43,12 +43,12 @@
 <div class="col-sm-8 col-xs-4 ">
    </div> 
     <div class="col-sm-12 col-xs-4 ">
-       <button type="submit" class="btn btn-primary " id="addCommentButton" ng-click="gotoTop();commentCtrl.getCommentObject(commentCtrl.objectComment)"ui-sref="form.viewitem({ item:commentCtrl.itemid})">
+       <button type="submit" class="btn btn-primary " ng-disabled ="!commentForm.$valid"id="addCommentButton" ng-click="commentCtrl.getCommentObject(commentCtrl.objectComment)"ui-sref="form.viewitem({ item:commentCtrl.itemid})" novalidate>
                                                         {{vm.translations.ADD}}</button>
                                             </div>
-    
+
        </div> 
-       
+       </form>
        </div> 
                                               
                                                

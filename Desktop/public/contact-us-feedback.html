@@ -7,17 +7,20 @@
     
                     <div class="well well-sm">
 
-                <form>
+                <form name="feedbackForm">
                 <div class="row">
                     <div  class="col-md-12 col-sm-12 ">
                           <div class="row">
                              
                              <div  class="col-md-6 col-sm-6"> <p align="left">
+
+                              <div  class="progress" ng-show="feedbackCtrl.progress"><div class="progress-bar" ng-model="feedbackCtrl.progress" style="width:{{feedbackCtrl.progress}}%">{{feedbackCtrl.progress}}</div></div>
+
                             <img src="http://www.ripepersonalchef.com/wp-content/uploads/2013/05/CLIENT-feedback-PAGE.jpg" max-size="50px" class="img-responsive">
                         </p>
                     <p align = "left">
                         <h3 hidden-sm ><br>{{vm.translations.CONTACT}}</h3> 
-                        <strong>Angel De La Torre </strong><u>angel.delatorre@upr.edu</u>
+                        <strong>Angel DeLaTorre </strong><u>angel.delatorre@upr.edu</u>
                         <br><strong>Irving Ramirez </strong><u>irving.ramirez@upr.edu</u>
                         <br><strong>Maria Rivera </strong><u>maria.rivera30@upr.edu</u>
                     </p></div>
@@ -25,14 +28,14 @@
                <div  class="col-md-6 col-sm-6 "> 
                 <div class ="row" >     <h3></h3> </div>
                      <div class = "row"></div>
-               <input type="text" class="form-control" placeholder="{{vm.translations.EMAIL}}" required="require" ng-model="feedbackCtrl.objectMessage.email">
+               <input type="email" class="form-control" placeholder="{{vm.translations.EMAIL}}" required="require" ng-model="feedbackCtrl.objectMessage.email" >
                 <label for="name">{{vm.translations.FEEDBACK}}
                                 </label>
                              <textarea  name="message" id ="message" class="form-control"   required="required"
                                     placeholder="{{vm.translations.MESSAGE}}" ng-model="feedbackCtrl.objectMessage.message" ng-pattern = "feedbackCtrl.pattern.field"></textarea>
             
                           <div class ="row" >    </div>
-                            <button  type="submit" ng-click="gotoTop(); feedbackCtrl.getComment(feedbackCtrl.objectMessage)" class="btn btn-primary pull-right" id="btnContactUs">
+                            <button  type="submit" ng-disabled="!feedbackForm.$valid" ng-click="feedbackCtrl.getComment(feedbackCtrl.objectMessage)" class="btn btn-primary pull-right" id="btnContactUs" novalidate>
                                 {{vm.translations.SENDMESSAGE}}</button>
                              
                    </div>
@@ -41,16 +44,7 @@
                
                        </div>         
                              
-                
-                   
-                     
-                    
-                
-                    
-    
-               
-                
-                             
+        
 
                            
            </div>

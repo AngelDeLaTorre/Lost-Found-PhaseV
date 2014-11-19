@@ -8,7 +8,9 @@
    <div class="row" >
  <div class="col-xs-12 col-md-12">
 
+
             <div class="well well-sm">
+
 
 
                 <div class="row">
@@ -36,6 +38,10 @@
 </div></div>
 
 
+                <form name="reportItemForm">
+                <div class="row">
+
+
                    <div class="col-xs-6 col-md-6"><br>
                         <div class="form-group">
                             <label for="name">
@@ -49,10 +55,10 @@
                             <input type="text" class="form-control" id="lastUser" placeholder="{{vm.translations.LASTNAME}}" required="require" ng-model="list.lastname">
                              <label for="Email">
                                 {{vm.translations.EMAIL}}</label>
-                            <input type="text" class="form-control" id="phone" placeholder="{{vm.translations.EMAIL}}" required="require" ng-model="list.email">
+                            <input type="email" class="form-control" id="phone" placeholder="{{vm.translations.EMAIL}}" required="require" ng-model="list.email">
                              <label for="phone">
                                 {{vm.translations.PHONENUM}}</label>
-                            <input type="text" class="form-control" id="phone" placeholder="787-655-5678" required="require" ng-model="list.phone">
+                            <input type="text" class="form-control" id="phone" placeholder="787-655-5678"  ng-model="list.phone">
                        
                         <div class="form-group">
                             <label for="location">
@@ -96,11 +102,14 @@
                         </div class "left">
                        
 
+                         <div  class="progress" ng-show="reportItemCtrl.progress"><div class="progress-bar" ng-model="reportItemCtrl.progress" style="width:{{reportItemCtrl.progress}}%">{{reportItemCtrl.progress}}</div></div>
+
+
                     </div>
                      <div class="row" >
  <div class="col-xs-2 col-md-12">
         
-       <p><a  ui-sref="form.newsfeeds" ng-click="gotoTop(); reportItemCtrl.setValue(list,myFile)" class="btn btn-primary" role="button" >{{vm.translations.SUBMIT}}</a> </p>
+       <p><a   ng-disabled="!reportItemForm.$valid" ng-click=" reportItemCtrl.setValue(list,myFile)" class="btn btn-primary" role="button" >{{vm.translations.SUBMIT}}</a> </p>
 
 
       </div>  
