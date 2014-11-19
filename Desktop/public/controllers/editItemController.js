@@ -17,6 +17,9 @@ function getItemID(){
             });
      
 }
+ $scope.showContent = function($fileContent){
+       editCtrl.item.itempicture = $fileContent;
+    };
 
 editCtrl.updateItem=function(){
 

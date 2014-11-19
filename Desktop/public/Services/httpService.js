@@ -39,7 +39,8 @@
         getFoundItemsSearch:getFoundItemsSearch,
         blockAdminComment:blockAdminComment,
         unblockAdminComment:unblockAdminComment,
-        addSeen:addSeen
+        addSeen:addSeen,
+        uploadPic:uploadPic
 
      
 
@@ -56,6 +57,13 @@
                         transformRequest: angular.identity
                     });
   };
+
+
+   function uploadPic(fileContent, name){       
+    return $http.post('/base64/'+ name,{
+    base64: fileContent
+});
+ }
    
         
     function getUsers(){

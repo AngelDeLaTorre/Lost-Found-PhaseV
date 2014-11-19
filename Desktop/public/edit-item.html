@@ -8,18 +8,29 @@
             
 <div class="thumbnail">
     
-        <input type="file" file-model="editCtrl.item.newFile" />
 
-       
-     <div>  
-      
-  
- 
-</div>
+ <div class="row">
+  <div class="col-sm-3 col-md-3"> <form  action="" method="post" enctype="multipart/form-data"><br><br>
+               
+                     <div class="upload" >
 
+                      <input class="glyphicon glyphicon glyphicon-picture" type="file" name="upload" file-model="myFile" on-read-file="showContent($fileContent)"/>
+                    
+              
+                   
+         </div>
+
+             </form></div>
+     
+
+      <div class="col-sm-6 col-md-6"> 
+                             
+                <img ng-src="{{editCtrl.item.itempicture}}" class="img-responsive">
+             
+</div></div>
 
           
-            <img ng-src="{{editCtrl.item.itempicture}}" class="img-responsive">
+           
 
                 <form>
                    
@@ -81,10 +92,10 @@
                         </div >
                        
                         <div class="row">
-  <div class="col-md-8">
+  <div class=" col-sm-7 col-md-7">
     
        </div> 
-       <div class="col-md-4">
+       <div class="col-md-4 col-sm-4">
     <a ui-sref="form.newsfeeds" ng-click="gotoTop();editCtrl.updateUser();editCtrl.updateItem();" id ="save"class="btn btn-default" role="button">{{vm.translations.SAVE}}</a> 
        </div> 
 

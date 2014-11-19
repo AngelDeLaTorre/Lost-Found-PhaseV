@@ -5,7 +5,7 @@
 
 var express = require('express');
 var routes = require('./routes');
-
+//var io = require('socket.io')(http);
 var http = require('http');
 var path = require('path');
 var path2 = require('path');
@@ -13,6 +13,15 @@ var app = express();
 var pg = require("pg");
 var fs = require('fs');
 var nodemailer = require('nodemailer');
+
+
+
+/*io.on('connection', function(socket){
+    socket.on('event:new:image',function(data){
+        socket.broadcast.emit('event:incoming:image',data);
+    });
+});
+*/
 // create reusable transporter object using SMTP transport
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -21,7 +30,7 @@ var transporter = nodemailer.createTransport({
         pass: 'DBlostfound04'
     }
 });
-
+var base64image = require('base64-image');
 app.use(express.bodyParser({
     uploadDir: __dirname + '/public',
     keepExtensions: true
@@ -70,6 +79,33 @@ app.all('/', function(req, res, next) {
  });
 
 
+
+function base64ToImage(dir) {
+   console.log(req.body);
+        console.log(req.body.base64);
+  return function(req, res, next) {
+   
+    var raw = req.body.base64;
+    var filename = req.params.filename ? req.params.filename : 'demo.png';
+    if (!checkBase64(raw)) return next();
+    var base64 = raw.replace(/^data:image\/png;base64,/, "");
+    var abs = path.join(dir, filename);
+    fs.writeFile(abs, base64, 'base64', function(err) {
+      if (err) return next(err);
+      res.locals.image = {
+        name: filename,
+        abs: abs
+      };
+
+          console.log("termino disque biennn");
+      return next();
+    });
+  }
+}
+
+function checkBase64(raw) {
+  return raw && typeof(raw) == 'string' && raw.match(/^data:image\/png;base64,/)
+}
 //gets
 app.get('/', routes.index);
 app.get('/allUsers', routes.getUsers);
@@ -109,6 +145,9 @@ app.post('/updateItem/', routes.updateItem);
 app.post('/resetKey/', routes.resetKey);
 app.post(/addSeen/, routes.addSeen);
 
+// base64 str will be saved into ./public/uploads dir,
+// check res.locals.image in the next router.
+app.post('/base64/:filename', base64image(path.join(__dirname, 'public/images')));
 //app.post('/images', routes.addImage); // endpoint to post new images
 //block
 

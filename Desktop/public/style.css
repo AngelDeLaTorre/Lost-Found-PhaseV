@@ -1,6 +1,6 @@
 /* BASIC STYLINGS
 ============================================================================= */
-body                            { padding-top:20px; background-image: url(shiny-black-cubes-4336.jpg);}
+body                            { padding-top:20px;  background-image: url(blue-sphere-trapped-among-white-cubes-4345.jpg);}
 pre                             { margin-bottom:20px; 
 }
 
@@ -347,32 +347,38 @@ textarea { width: 100%; margin: 0; padding: 0; border-width: 0; }
 }
 #message.ng-invalid {
     color:black;
-
-    border-style: solid;
+    border-style: inset;
     border-color: red;
 }
-
 #message.ng-valid {
     color:black;
-    border-style: solid;
-
+    border-style: inset;
     border-color: green;
+
 }
 
 div.upload {
-    width: 157px;
-    height: 57px;
+    width: 120px;
+    height: 40px;
+ text-align:center;
     background: url(https://lh6.googleusercontent.com/-dqTIJRTqEAQ/UJaofTQm3hI/AAAAAAAABHo/w7ruR1SOIsA/s157/upload.png);
+    
+    background-size: 120px;  
     overflow: hidden;
 }
 div.upload input {
+
     display: block !important;
     width: 157px !important;
     height: 57px !important;
     opacity: 0 !important;
     overflow: hidden !important;
+
 }
 
+
+
+ss
 /* ANIMATIONS
 ============================================================================= */
 /* slide out to the left */
