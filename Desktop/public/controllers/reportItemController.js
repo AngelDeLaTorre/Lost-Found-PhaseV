@@ -14,16 +14,23 @@ angular.module('formApp')
  
 
     function postItem(myFile) {
-        var file = myFile;
-        console.log('file is ' + JSON.stringify(file));
+       var file =  $scope.content;
+      /*  console.log('file is ' + JSON.stringify(file));
         var uploadUrl = "/upload";
-        fileUpload.uploadFileToUrl(file, uploadUrl);
-        reportItemCtrl.list.itemStatus = $stateParams.itemStatus;
-        reportItemCtrl.list.itempicture = 'images/' + file.name;
+        fileUpload.uploadFileToUrl(file, uploadUrl);*/
+restApi.uploadPic(file,myFile.name).success(function () {
 
-     
 
-        restApi.postItem(reportItemCtrl.list)
+              })
+            .error(function (error) {
+                $scope.status = 'Unable to load customer data: ' + error.message;
+            });
+
+
+    reportItemCtrl.list.itemStatus = $stateParams.itemStatus;
+        reportItemCtrl.list.itempicture = 'images/' + myFile.name;
+
+    restApi.postItem(reportItemCtrl.list)
             .success(function () {
 
 
@@ -32,6 +39,11 @@ angular.module('formApp')
                 $scope.status = 'Unable to load customer data: ' + error.message;
             });
 
+    
+
+     
+
+        
        /*restApi.updateUser(editCtrl.item)
 
             .success(function () {

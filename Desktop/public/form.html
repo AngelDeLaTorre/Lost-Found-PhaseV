@@ -130,9 +130,9 @@
 
       
       <!-- use ng-submit to catch the form submission and use our Angular function -->
-     <div class="col-xs-12 col-sm-12 col-md-12 text-center" style="min-height: 5000px;">
+     <div class="col-xs-12 col-sm-12 col-md-12 text-center" style="min-height: 400px;">
           <!-- our nested state views will be injected here -->
-          <div id="form-views" ui-view class="ng-scope" style="min-height: 5000px;"></div>
+          <div id="form-views" ui-view class="ng-scope" style="min-height: 400px;"></div>
     </div>
       
 
@@ -147,7 +147,7 @@
 
  <div id="containerfooter">
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+    <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" style="max-height: 25px">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-form pull-right">
@@ -176,7 +176,7 @@
                     
                 </ul>
                  <form class="navbar-form pull-right hidden-sm">
-                <div id="status-buttons" class="text-right">
+                <div id="status-buttons2" class="text-right">
              <a class="centre" ui-sref-active="active" ng-click="gotoTop()" ui-sref=".reportlost"><span></span>Lost</a>
               <a  class="centre" ui-sref-active="active" ng-click="gotoTop()" ui-sref=".newsfeeds"><span></span>{{vm.translations.HOME}}</a>
               <a class="centre" ui-sref-active="active" ng-click="gotoTop()" ui-sref=".reportfound"><span></span>Found</a>

@@ -18,12 +18,12 @@
     <div class="row">
   <div class="col-xs-12 col-md-4"><div class="itemimg"> <div class="col-sm-12 col-md-12 col-lg-12"><img ng-src="{{item.itempicture}}" class="img-responsive" ui-sref="form.viewitem({ item:item.itemid})" ng-click="newsfeedCtrl.addSeen(item.itemid)" > </div></div></div>
   <div class="row">
-  <div class="col-xs-12 col-md-4"><h2 ><CENTER>{{item.itemstatus}}</CENTER></h2><h4><CENTER>{{vm.translations.ITEMID}}: {{item.itemid}}</CENTER></h4><h4><CENTER>{{vm.translations.CATEGORY}}: {{item.category}}</CENTER></h4><h4><CENTER>{{item.locationitem}}</CENTER></h4><h4><center>{{vm.translations.SEENBY}}: {{item.itemviews}}</center></h4>
+  <div class="col-xs-12 col-md-4"><h3 ><CENTER>{{item.itemstatus}}</CENTER></h3><h5><CENTER>{{vm.translations.ITEMID}}: {{item.itemid}}</CENTER></h5><h5><CENTER>{{vm.translations.CATEGORY}}: {{item.category}}</CENTER></h5><h5><CENTER>{{item.locationitem}}</CENTER></h5><h5><center>{{vm.translations.SEENBY}}: {{item.itemviews}}</center></h5>
  </div>
 
 <div class="row">
   <div class="col-xs-12 col-md-4">  
-  <h3 ><center>{{item.itemname}}</center></h3>
+  <h4 ><center>{{item.itemname}}</center></h4>
  <button ng-click="newsfeedCtrl.thumbsdownfunction(item.itemid)" ><span class="glyphicon glyphicon-thumbs-down custom"></span></button> 
 
 
@@ -38,5 +38,5 @@
    
   
 
-</ul>
+</ul><br>
 </div>
