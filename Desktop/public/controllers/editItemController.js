@@ -22,14 +22,12 @@ function getItemID(){
     };
 
 editCtrl.updateItem=function(){
-
+        var file =  $scope.content;
  		
-        var uploadUrl = "/upload";
+   
 
         if(editCtrl.item.newFile != null){
-
-        	fileUpload.uploadFileToUrl(editCtrl.item.newFile, uploadUrl);
-    		editCtrl.item.itempicture = 'images/' + editCtrl.item.newFile.name;
+    		editCtrl.item.itempicture =$scope.content;
     	}
 
 	restApi.updateUser(editCtrl.item)
