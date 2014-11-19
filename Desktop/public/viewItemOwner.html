@@ -13,7 +13,7 @@
                      <div class=".col-xs-6 .col-sm-3" align="right">
                   <a  id ="editBtn" class="btn btn-default" ng-click="gotoTop()" role="button" ui-sref="form.edititem({item:itemViewCntrl.item.itemid})">{{vm.translations.EDIT}}</a> 
                    </div>
-                    <img ng-src="{{itemViewCntrl.item.itempicture}}">
+                    <img ng-src={{itemViewCntrl.item.itempicture}}>
                     <h4> <a> {{itemViewCntrl.item.itemname}}</a> </h4>
                     <div class="caption-full" >
                         

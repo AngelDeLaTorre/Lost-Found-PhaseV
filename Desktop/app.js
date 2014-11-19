@@ -5,7 +5,7 @@
 
 var express = require('express');
 var routes = require('./routes');
-
+//var io = require('socket.io')(http);
 var http = require('http');
 var path = require('path');
 var path2 = require('path');
@@ -13,6 +13,15 @@ var app = express();
 var pg = require("pg");
 var fs = require('fs');
 var nodemailer = require('nodemailer');
+
+
+
+/*io.on('connection', function(socket){
+    socket.on('event:new:image',function(data){
+        socket.broadcast.emit('event:incoming:image',data);
+    });
+});
+*/
 // create reusable transporter object using SMTP transport
 var transporter = nodemailer.createTransport({
     service: 'Gmail',

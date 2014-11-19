@@ -14,21 +14,21 @@ angular.module('formApp')
  
 
     function postItem(myFile) {
-       var file =  $scope.content;
+    var file =  $scope.content;
       /*  console.log('file is ' + JSON.stringify(file));
         var uploadUrl = "/upload";
         fileUpload.uploadFileToUrl(file, uploadUrl);*/
-restApi.uploadPic(file,myFile.name).success(function () {
+/*restApi.uploadPic(file,myFile.name).success(function () {
 
 
               })
             .error(function (error) {
                 $scope.status = 'Unable to load customer data: ' + error.message;
-            });
+            });*/
 
 
     reportItemCtrl.list.itemStatus = $stateParams.itemStatus;
-        reportItemCtrl.list.itempicture = 'images/' + myFile.name;
+    reportItemCtrl.list.itempicture = $scope.content;
 
     restApi.postItem(reportItemCtrl.list)
             .success(function () {

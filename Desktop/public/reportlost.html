@@ -46,7 +46,7 @@
   <li class="list-group-item" ng-repeat="lostitem in lostCtrl.lostItems">
     <div class="row">
 
-  <div class="col-xs-12 col-md-4"><div class="itemimg"> <div class="col-sm-12 col-md-12 col-lg-12"><img ng-src="{{lostitem.itempicture}}"  ui-sref="form.viewitem({ item:lostitem.itemid})" ng-click="lostCtrl.addSeen(lostitem.itemid)" height="200" width="200"></div> </div></div>
+  <div class="col-xs-12 col-md-4"><div class="itemimg"> <div class="col-sm-12 col-md-12 col-lg-12"><img ng-src={{lostitem.itempicture}}  ui-sref="form.viewitem({ item:lostitem.itemid})" ng-click="lostCtrl.addSeen(lostitem.itemid)" height="200" width="200"></div> </div></div>
   <div class="row">
   <div class="col-xs-12 col-md-4"><h3 ><CENTER>{{lostitem.itemstatus}}</CENTER></h3><h5><CENTER> {{vm.translations.ITEMID}}: {{lostitem.itemid}}</CENTER></h5><h5><CENTER>{{vm.translations.CATEGORY}}: {{lostitem.category}}</CENTER></h5><h5><CENTER>{{lostitem.locationitem}}</CENTER></h5><h5><center> {{vm.translations.SEENBY}}: {{lostitem.itemviews}}</center></h5>
 
