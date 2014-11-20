@@ -16,7 +16,7 @@ angular.module('formApp')
         
         restApi.postComment(commentCtrl.objectComment)
             .success(function (data) {
-             
+               commentCtrl.objectComment ={};
               })
             .error(function (error) {
                 $scope.status = 'Unable to load customer data: ' + error.message;

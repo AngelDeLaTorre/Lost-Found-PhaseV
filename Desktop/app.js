@@ -125,6 +125,9 @@ app.get('/allAdminComments/:id', routes.getAdminComments);
 app.get('/get10Items/:offset',routes.get10Items);
 app.get('/get10LostItems/:offset',routes.get10LostItems);
 app.get('/get10FoundItems/:offset',routes.get10FoundItems);
+app.get('/get5Items/:offset',routes.get5Items);
+app.get('/get5LostItems/:offset',routes.get5LostItems);
+app.get('/get5FoundItems/:offset',routes.get5FoundItems);
 
 //posts
 // app.post('/aCategories',routes.postCategories);
@@ -148,6 +151,7 @@ app.post('/updateItem/', routes.updateItem);
 app.post('/resetKey/', routes.resetKey);
 app.post(/addSeen/, routes.addSeen);
 app.get('/getUserEmail/:email',routes.getUserEmail);
+
 
 // base64 str will be saved into ./public/uploads dir,
 // check res.locals.image in the next router.

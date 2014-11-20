@@ -68,7 +68,7 @@ transporter.sendMail(mailOptions, function(error, info){
 
 
 exports.resetKey = function(req,res){
-  console.log("POST");
+  console.log("POST RESET KEY");
   var randkey = generateKey();
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -89,6 +89,7 @@ exports.resetKey = function(req,res){
                                 
                                 client.end();
                                 });
+
                    });
 
   sendMail(req.body.id,randkey);
@@ -99,7 +100,7 @@ exports.resetKey = function(req,res){
 
 
 exports.getLostItemsSearch = function(req, res) {
-    console.log("GET");
+    console.log("GET GETLOSTITEMSEARCH");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
@@ -117,7 +118,7 @@ exports.getLostItemsSearch = function(req, res) {
                                 "items" : result.rows
                                 };
                                 res.json(200,response);
-                                console.log(response);
+                             
                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
                                 });
@@ -126,7 +127,7 @@ exports.getLostItemsSearch = function(req, res) {
 };
 
 exports.getFoundItemsSearch = function(req, res) {
-    console.log("GET");
+    console.log("GET GETFOUNDITEMS");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
@@ -144,7 +145,7 @@ exports.getFoundItemsSearch = function(req, res) {
                                 "items" : result.rows
                                 };
                                 res.json(200,response);
-                                console.log(response);
+                              
                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
                                 });
@@ -160,7 +161,7 @@ exports.index = function(req, res){
 };
 
 exports.getItemId = function(req, res) {
-    console.log("GET");
+    console.log("GET ITEMID");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
@@ -179,7 +180,7 @@ exports.getItemId = function(req, res) {
                                 };
                                 res.status(200);
                                 res.json(response);
-                                console.log(response);
+                            
                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
                                 });
@@ -189,14 +190,14 @@ exports.getItemId = function(req, res) {
 
 
 exports.postFeedback= function(req,res){
-  console.log("POST");
+  console.log("POST FEEDBACK");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   console.log(req.body);
+            
                    client.query("INSERT INTO feedback (message, email) VALUES ('"+req.body.message+"','"+req.body.email+"')", function(err, result) {
                                
                                 if (err) {
@@ -211,16 +212,17 @@ exports.postFeedback= function(req,res){
 
 
 exports.postComment= function(req,res){
-  console.log("POST");
+  console.log("POST COMMENT");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   console.log(req.body);
-                   client.query("INSERT INTO comment (itemid, usercomment, email,isblocked) VALUES ('"+req.body.itemid+"','"+req.body.usercomment+"','"+req.body.email+"','"+req.body.isblocked+"')", function(err, result) {
-                               
+           
+                   client.query("INSERT INTO comment( itemid, usercomment, email) SELECT * FROM (SELECT "+req.body.itemid+",'"+req.body.usercomment+"','"+req.body.email+"') AS tmp WHERE NOT EXISTS (SELECT * FROM comment WHERE  itemid = '"+req.body.itemid+"' AND usercomment = '"+req.body.usercomment+"' AND email = '"+req.body.email+"') LIMIT 1", function(err, result) {
+                              
+
                                 if (err) {
                                 return console.error('error running query', err);
                                 }
@@ -232,7 +234,7 @@ exports.postComment= function(req,res){
 };
 
 exports.postUser= function(req,res){
-  console.log("POST");
+  console.log("POST POSTUSER");
    var randkey= generateKey();  
   var client = new pg.Client(conString);
      
@@ -241,8 +243,9 @@ exports.postUser= function(req,res){
                    return console.error('could not connect to postgres', err);
                    }
                    
-                   client.query("INSERT INTO users (firstname, lastname, email, phone, passkey, isblocked, isadmin) VALUES ('"+req.body.firstname+"','"+req.body.lastname+"','"+req.body.email+"','"+req.body.phone+"','"+randkey+"','"+req.body.isblocked+"','"+req.body.isadmin+"')", function(err, result) {
-                               
+                   client.query("INSERT INTO users( firstname, lastname, email, phone, passkey) SELECT * FROM (SELECT '"+req.body.firstname+"','"+req.body.lastname+"','"+req.body.email+"','"+req.body.phone+"','"+randkey+"') AS tmp WHERE NOT EXISTS ( SELECT * FROM users WHERE  email = '"+req.body.email+"') LIMIT 1 ", function(err, result) {
+
+
                                 if (err) {
                                 return console.error('error running query', err);
                                 }
@@ -251,13 +254,15 @@ exports.postUser= function(req,res){
                                 client.end();
                                 });
                    });
+
+
   sendMail(req.body.email, randkey);
 };
 
 
 
 exports.updateUser= function(req,res){
-  console.log("POST");
+  console.log("POST UPDATEUSER");
      var randkey= generateKey();  
   var client = new pg.Client(conString);
      
@@ -276,7 +281,7 @@ exports.updateUser= function(req,res){
                                 client.end();
                                 });
                    });
-    sendMail(req.body.email, randkey);
+   
 };
 
 
@@ -305,7 +310,7 @@ exports.updateUser= function(req,res){
 
 
 exports.getUsers = function(req, res) {
-    console.log("GET");
+    console.log("GET USER");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
 	var client = new pg.Client(conString);
@@ -324,7 +329,7 @@ exports.getUsers = function(req, res) {
                                 };
                                 
                                 res.json(200,response);
-                                console.log(response);
+                               
                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
                                 });
@@ -333,7 +338,7 @@ exports.getUsers = function(req, res) {
 };
 
 exports.getUserEmail = function(req, res) {
-    console.log("GET");
+    console.log("GET GETUSEREMAIL");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
@@ -352,7 +357,7 @@ exports.getUserEmail = function(req, res) {
                                 };
                                 
                                 res.json(200,response);
-                                console.log(response);
+                         
                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
                                 });
@@ -362,7 +367,7 @@ exports.getUserEmail = function(req, res) {
 
 
 exports.getAdmins = function(req, res) {
-    console.log("GET");
+    console.log("GET ADMIN");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
@@ -381,7 +386,7 @@ exports.getAdmins = function(req, res) {
                                 };
                                 
                                 res.json(200,response);
-                                console.log(response);
+                        
                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
                                 });
@@ -391,7 +396,7 @@ exports.getAdmins = function(req, res) {
 
 exports.getItems = function(req, res) {
     
-    console.log("GET");
+    console.log("GET GET ITEMS");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
@@ -419,7 +424,7 @@ exports.getItems = function(req, res) {
 
 exports.get10Items = function(req, res) {
     
-    console.log("GET");
+    console.log("GET10ITEMS");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
@@ -437,7 +442,7 @@ exports.get10Items = function(req, res) {
                                 "items" : result.rows
                                 };
                                 res.json(200,response);
-                                console.log(response);
+                               
                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
                                 });
@@ -445,8 +450,9 @@ exports.get10Items = function(req, res) {
 
 };
 
-exports.getLostItems = function(req, res) {
-    console.log("GET");
+exports.get5Items = function(req, res) {
+    
+    console.log("GET5ITEMS");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
@@ -455,7 +461,36 @@ exports.getLostItems = function(req, res) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query("SELECT * FROM public.item WHERE item.itemstatus = 'Lost' and item.isblocked = 'false' ORDER BY item.itemid DESC", function(err, result) {
+                   client.query("SELECT * FROM public.item, public.users WHERE item.email = users.email AND item.isblocked = 'false' ORDER BY item.itemid DESC LIMIT 5 OFFSET "+req.params.offset+" ", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                var response = {
+                                "items" : result.rows
+                                };
+                                res.json(200,response);
+                               
+                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                                client.end();
+                                });
+                   });
+
+};
+
+
+
+exports.getLostItems = function(req, res) {
+    console.log("GETLOSTITEMS");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var client = new pg.Client(conString);
+    
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query("SELECT * FROM public.item, public.users WHERE item.email = users.email and item.itemstatus = 'Lost' and item.isblocked = 'false' ORDER BY item.itemid DESC", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -465,7 +500,7 @@ exports.getLostItems = function(req, res) {
                                 };
                     
                                 res.json(200,response);
-                                console.log(response);
+                           
                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
                                 });
@@ -475,7 +510,7 @@ exports.getLostItems = function(req, res) {
 
 
 exports.get10LostItems = function(req, res) {
-    console.log("GET");
+    console.log("GET10 LOST ITEMS");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
@@ -484,7 +519,7 @@ exports.get10LostItems = function(req, res) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query("SELECT * FROM public.item WHERE item.itemstatus = 'Lost' and item.isblocked = 'false' ORDER BY item.itemid DESC LIMIT 10 OFFSET "+req.params.offset+" ", function(err, result) {
+                   client.query("SELECT * FROM public.item , public.users WHERE item.email = users.email and  item.itemstatus = 'Lost' and item.isblocked = 'false' ORDER BY item.itemid DESC LIMIT 10 OFFSET "+req.params.offset+" ", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -494,7 +529,7 @@ exports.get10LostItems = function(req, res) {
                                 };
                     
                                 res.json(200,response);
-                                console.log(response);
+                           
                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
                                 });
@@ -502,8 +537,8 @@ exports.get10LostItems = function(req, res) {
 
 };
 
-exports.getFoundItems = function(req, res) {
-    console.log("GET");
+exports.get5LostItems = function(req, res) {
+    console.log("GET5 LOST ITEMS");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
@@ -512,7 +547,35 @@ exports.getFoundItems = function(req, res) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query("SELECT * FROM public.item WHERE item.itemstatus = 'Found' and item.isblocked = 'false' ORDER BY item.itemid DESC", function(err, result) {
+                   client.query("SELECT * FROM public.item , public.users WHERE item.email = users.email and  item.itemstatus = 'Lost' and item.isblocked = 'false' ORDER BY item.itemid DESC LIMIT 5 OFFSET "+req.params.offset+" ", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                var response = {
+                                "lostItems" : result.rows
+                                };
+                    
+                                res.json(200,response);
+                           
+                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                                client.end();
+                                });
+                   });
+
+};
+
+exports.getFoundItems = function(req, res) {
+    console.log("GET FOUND ITEMS");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var client = new pg.Client(conString);
+    
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query("SELECT * FROM public.item , public.users WHERE item.email = users.email and  item.itemstatus = 'Found' and item.isblocked = 'false' ORDER BY item.itemid DESC", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -522,7 +585,7 @@ exports.getFoundItems = function(req, res) {
                                 };
                                 res.status(200);
                                 res.json(response);
-                                console.log(response);
+                             
                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
                                 });
@@ -532,7 +595,7 @@ exports.getFoundItems = function(req, res) {
 
 
 exports.get10FoundItems = function(req, res) {
-    console.log("GET");
+    console.log("GET 10 FOUND ITEMS");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
@@ -541,7 +604,7 @@ exports.get10FoundItems = function(req, res) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query("SELECT * FROM public.item WHERE item.itemstatus = 'Found' and item.isblocked = 'false' ORDER BY item.itemid DESC LIMIT 10 OFFSET "+req.params.offset+" ", function(err, result) {
+                   client.query("SELECT * FROM public.item , public.users WHERE item.email = users.email and item.itemstatus = 'Found' and item.isblocked = 'false' ORDER BY item.itemid DESC LIMIT 10 OFFSET "+req.params.offset+" ", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -551,7 +614,35 @@ exports.get10FoundItems = function(req, res) {
                                 };
                     
                                 res.json(200,response);
-                                console.log(response);
+                           
+                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                                client.end();
+                                });
+                   });
+
+};
+
+exports.get5FoundItems = function(req, res) {
+    console.log("GET 5 FOUND ITEMS");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var client = new pg.Client(conString);
+    
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query("SELECT * FROM public.item , public.users WHERE item.email = users.email and item.itemstatus = 'Found' and item.isblocked = 'false' ORDER BY item.itemid DESC LIMIT 5 OFFSET "+req.params.offset+" ", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                var response = {
+                                "foundItems" : result.rows
+                                };
+                    
+                                res.json(200,response);
+                           
                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
                                 });
@@ -560,7 +651,7 @@ exports.get10FoundItems = function(req, res) {
 };
 
 exports.getComments = function(req, res) {
-    console.log("GET");
+    console.log("GET COMMENTS");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
@@ -579,7 +670,7 @@ exports.getComments = function(req, res) {
                                 };
                                 res.status(200);
                                 res.json(response);
-                                console.log(response);
+                         
                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
                                 });
@@ -588,7 +679,7 @@ exports.getComments = function(req, res) {
 };
 
 exports.getAdminComments = function(req, res) {
-    console.log("GET");
+    console.log("GET GETADMIN COMMENTS");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
@@ -607,7 +698,7 @@ exports.getAdminComments = function(req, res) {
                                 };
                                 res.status(200);
                                 res.json(response);
-                                console.log(response);
+                               
                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
                                 });
@@ -617,7 +708,7 @@ exports.getAdminComments = function(req, res) {
 
 
 exports.getUserAdmin = function(req, res) {
-    console.log("GET");
+    console.log("GET GETUSERADMIN");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
@@ -636,7 +727,7 @@ exports.getUserAdmin = function(req, res) {
                                 };
                                 res.status(200);
                                 res.json(response);
-                                console.log(response);
+                             
                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
                                 });
@@ -647,7 +738,7 @@ exports.getUserAdmin = function(req, res) {
 
 
 exports.getItemsAdmin = function(req, res) {
-    console.log("GET");
+    console.log("GET ITEMS ADMIN");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
@@ -665,7 +756,7 @@ exports.getItemsAdmin = function(req, res) {
                                 "items" : result.rows
                                 };
                                 res.json(200,response);
-                                console.log(response);
+                                
                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
                                 });
@@ -674,7 +765,7 @@ exports.getItemsAdmin = function(req, res) {
 };
 
 exports.getItemsAdminSearchBar = function(req, res) {
-    console.log("GET");
+    console.log("GET ITEMSADMIN SEARCH");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
@@ -692,7 +783,7 @@ exports.getItemsAdminSearchBar = function(req, res) {
                                 "items" : result.rows
                                 };
                                 res.json(200,response);
-                                console.log(response);
+                                
                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
                                 });
@@ -728,56 +819,21 @@ exports.getItemsAdminSearchBar = function(req, res) {
 
 // };
 
-/*exports.postItem= function(req,res){
-  
-   var randkey="";
-  console.log("POST");
-  var client = new pg.Client(conString);
-  client.connect(function(err) {
-                   if (err) {
-                   return console.error('could not connect to postgres', err);
-                   }
-                   console.log(req.body);
-                   client.query("INSERT INTO item (itemname,description,locationitem,city,itemstatus,email,category,itempicture) VALUES ('"+req.body.itemname+"','"+req.body.description+"','"+req.body.location+"','"+req.body.city+"','"+req.body.itemStatus+"','"+req.body.email+"','"+req.body.category+"','"+req.body.itempicture+"')", function(err, result) {
-                               
-                                if (err) {
-                                return console.error('error running query', err);
-                                }
-                                client.end();
-                                });   
-                             
-                            randkey = generateKey();    
 
-                   client.query("UPDATE public.users SET firstname = '"+req.body.firstname+"', lastname = '"+req.body.lastname+"', phone = '"+req.body.phone+"', passkey = '"+randkey+"' where email = '"+req.body.email+"'", function(err, result) {
-                               
-                                if (err) {
-                                return console.error('error running query', err);
-                                }
-                                res.status(200);
-                                client.end();
-                                });
-
-
-                    
-
-                   });
-sendMail(req.body.email, randkey);
-
-};*/
 
 
 
 exports.postItem= function(req,res){
   
    var randkey="";
-  console.log("POST");
+  console.log("POST ITEM");
   var client = new pg.Client(conString);
   client.connect(function(err) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   console.log(req.body);
-                   client.query("INSERT INTO item (itemname,description,locationitem,city,itemstatus,email,category,itempicture) VALUES ('"+req.body.itemname+"','"+req.body.description+"','"+req.body.location+"','"+req.body.city+"','"+req.body.itemStatus+"','"+req.body.email+"','"+req.body.category+"','"+req.body.itempicture+"')", function(err, result) {
+                 
+                   client.query("INSERT INTO item(itemname, description, locationitem, city, itemstatus, email, category,  itempicture) SELECT * FROM (SELECT '"+req.body.itemname+"','"+req.body.description+"','"+req.body.location+"','"+req.body.city+"','"+req.body.itemStatus+"','"+req.body.email+"','"+req.body.category+"','"+req.body.itempicture+"') AS tmp WHERE NOT EXISTS (SELECT * FROM item WHERE  itemname ='"+req.body.itemname+"' and description='"+req.body.description+"' and  locationitem='"+req.body.location+"' and city='"+req.body.city+"'and itemstatus= '"+req.body.itemStatus+"' and email='"+req.body.email+"'and  category='"+req.body.category+"') LIMIT 1 ", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -797,7 +853,7 @@ exports.postItem= function(req,res){
 
 
 exports.updateItem= function(req,res){
-  console.log("POST");
+  console.log("POST UPDATEITEM");
   var client = new pg.Client(conString);
 
   client.connect(function(err) {
@@ -815,22 +871,14 @@ exports.updateItem= function(req,res){
                                 });
                  
 
-                 client.query("UPDATE public.users SET firstname = '"+req.body.firstname+"', lastname = '"+req.body.lastname+"', phone = '"+req.body.phone+"',  where email = '"+req.body.email+"'", function(err, result) {
-                               
-                                if (err) {
-                                
-                                return console.error('error running query', err);
-                                }
-                                
-                                client.end();
-                                });
+                
 
                      });
 };
 
 
 exports.putThumbsdown= function(req,res){
-  console.log("POST");
+  console.log("POST PUTTHUMBSDOWN");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
@@ -853,7 +901,7 @@ exports.putThumbsdown= function(req,res){
 
 
 exports.getMyPosts= function(req,res){
-  console.log("GET");
+  console.log("GET GETmYpOST");
    console.log(req.params);
     
   var client = new pg.Client(conString);
@@ -872,7 +920,7 @@ exports.getMyPosts= function(req,res){
                                 };
                                 res.status(200);
                                 res.json(response);
-                                console.log(response);
+                               
                                
                                 client.end();
                                 });
@@ -882,7 +930,7 @@ exports.getMyPosts= function(req,res){
 };
 
 exports.getAuth= function(req,res){
-  console.log("GET");
+  console.log("GETAUTH");
   
     
   var client = new pg.Client(conString);
@@ -903,7 +951,7 @@ exports.getAuth= function(req,res){
                                 console.log(response.user);
                                 res.status(200);
                                 res.json(response);
-                                console.log(response);
+                              
                                
                                 client.end();
                                 });
@@ -914,7 +962,7 @@ exports.getAuth= function(req,res){
 
 
 exports.blockAdminUser= function(req,res){
-  console.log("POST");
+  console.log("POST blockAdminUser");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
@@ -935,7 +983,7 @@ exports.blockAdminUser= function(req,res){
 };
 
 exports.unblockAdminUser= function(req,res){
-  console.log("POST");
+  console.log("POST unblockAdminUser");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
@@ -957,7 +1005,7 @@ exports.unblockAdminUser= function(req,res){
 
 
 exports.blockAdminItem= function(req,res){
-  console.log("POST");
+  console.log("POST blockAdminItem");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
@@ -978,7 +1026,7 @@ exports.blockAdminItem= function(req,res){
 };
 
 exports.unblockAdminItem= function(req,res){
-  console.log("POST");
+  console.log("POST unblockAdminItem");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
@@ -1000,7 +1048,7 @@ exports.unblockAdminItem= function(req,res){
 
 
 exports.removeAdmin= function(req,res){
-  console.log("POST");
+  console.log("POST removeAdmin");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
@@ -1021,7 +1069,7 @@ exports.removeAdmin= function(req,res){
 };
 
 exports.blockAdminComment= function(req,res){
-  console.log("POST");
+  console.log("POST blockAdminComment");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
@@ -1042,7 +1090,7 @@ exports.blockAdminComment= function(req,res){
 };
 
 exports.unblockAdminComment= function(req,res){
-  console.log("POST");
+  console.log("POST unblockAdminComment");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
@@ -1063,7 +1111,7 @@ exports.unblockAdminComment= function(req,res){
 };
 
 exports.addSeen= function(req,res){
-  console.log("POST");
+  console.log("POST addSeen");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {

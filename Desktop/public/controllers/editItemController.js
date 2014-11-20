@@ -33,7 +33,7 @@ editCtrl.updateItem=function(){
 	restApi.updateUser(editCtrl.item)
 
 			.success(function () {
-                 alert('hizo user');            
+                         
             })
             .error(function (error) {
                 editCtrl.status = 'Unable to load customer data: ' + error.message;

@@ -18,25 +18,8 @@ angular.module('formApp')
 
     function postItem(myFile) {
     var file =  $scope.content;
-      /*  console.log('file is ' + JSON.stringify(file));
-        var uploadUrl = "/upload";
-        fileUpload.uploadFileToUrl(file, uploadUrl);*/
-/*restApi.uploadPic(file,myFile.name).success(function () {
-
-
-              })
-            .error(function (error) {
-                $scope.status = 'Unable to load customer data: ' + error.message;
-            });*/
-
-
 
     restApi.getUserEmail(reportItemCtrl.list.email) .success(function (data) {
-            
-            
-   
- 
-
     reportItemCtrl.list.itemStatus = $stateParams.itemStatus;
     reportItemCtrl.list.itempicture = $scope.content;
     reportItemCtrl.list.isblocked='false';
@@ -48,15 +31,14 @@ if (data.user.length==0){
 
         restApi.postUser(reportItemCtrl.list)
             .success(function (data) {
-            
+           
               })
             .error(function (error) {
                 $scope.status = 'Unable to load customer data: ' + error.message;
-            });
+            })
 
             restApi.postItem(reportItemCtrl.list)
             .success(function () {
-
 
             })
             .error(function (error) {
@@ -67,12 +49,11 @@ if (data.user.length==0){
         }
 
      
-    else if(reportItemCtrl.list.email==data.user[0].email){
+    else if(data.user.length>0){
 
         restApi.updateUser(reportItemCtrl.list)
             .success(function (data) {
-            
-              })
+             })
             .error(function (error) {
                 $scope.status = 'Unable to load customer data: ' + error.message;
             });
@@ -89,10 +70,10 @@ if (data.user.length==0){
 
 
         }
-reportItemCtrl.list ={};
+
         
 reportItemCtrl.progressfunction();
-};
+});
 
          
 
@@ -104,7 +85,7 @@ reportItemCtrl.progressfunction();
        
 
 
-});
+};
      
 
 
