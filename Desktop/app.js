@@ -122,6 +122,9 @@ app.get('/myPostsItems/:email/:key', routes.getMyPosts);
 app.get('/anLostItem/:id', routes.getLostItemsSearch);
 app.get('/anFoundItem/:id', routes.getFoundItemsSearch);
 app.get('/allAdminComments/:id', routes.getAdminComments);
+app.get('/get10Items/:offset',routes.get10Items);
+app.get('/get10LostItems/:offset',routes.get10LostItems);
+app.get('/get10FoundItems/:offset',routes.get10FoundItems);
 
 //posts
 // app.post('/aCategories',routes.postCategories);

@@ -75,5 +75,20 @@
   
 
 </ul>
+
+<br>
+
+<div class="row">
+
+   <div class="col-sm-3 col-md-3"> 
+    <button ng-hide="foundCtrl.page === 0" class= "btn-primary" ng-click="gotoTop() ; foundCtrl.get10FoundItems(-10)"align= "rigth">Previous page</button>
+
+   </div>
+  <div class="col-sm-6 col-md-6">  </div>
+ <div class="col-sm-3 col-md-3"> 
+<button ng-hide="foundCtrl.foundItems.length < 10" class= "btn-primary" ng-click="gotoTop() ; foundCtrl.get10FoundItems(10)"align= "rigth">Next page</button>
+
+   </div>
+  </div>
 </div>
 </div>

@@ -40,7 +40,7 @@ angular.module('formApp')
                 $scope.status = 'Unable to load customer data: ' + error.message;
             });
 
-
+reportItemCtrl.list ={};
        
 reportItemCtrl.progressfunction();
 
