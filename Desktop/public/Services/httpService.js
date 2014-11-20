@@ -40,7 +40,8 @@
         blockAdminComment:blockAdminComment,
         unblockAdminComment:unblockAdminComment,
         addSeen:addSeen,
-        uploadPic:uploadPic
+        uploadPic:uploadPic,
+         getUserEmail:getUserEmail
 
      
 
@@ -65,7 +66,9 @@
 });
  }
    
-        
+    function getUserEmail (email){
+            return $http.get('/getUserEmail/' + email);
+       }   
     function getUsers(){
 
     return $http.get('/allUsers');

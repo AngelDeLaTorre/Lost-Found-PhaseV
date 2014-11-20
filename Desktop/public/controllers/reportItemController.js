@@ -3,6 +3,7 @@ angular.module('formApp')
  var reportItemCtrl = this;
  reportItemCtrl.progress = 0;
     prog =0;
+    var newEmail={};
 
  reportItemCtrl.pattern = {
 
@@ -13,6 +14,7 @@ angular.module('formApp')
         $scope.content = $fileContent;
     };
  
+  
 
     function postItem(myFile) {
     var file =  $scope.content;
@@ -28,19 +30,72 @@ angular.module('formApp')
             });*/
 
 
+
+    restApi.getUserEmail(reportItemCtrl.list.email) .success(function (data) {
+            
+            
+   
+ 
+
     reportItemCtrl.list.itemStatus = $stateParams.itemStatus;
     reportItemCtrl.list.itempicture = $scope.content;
+    reportItemCtrl.list.isblocked='false';
+    reportItemCtrl.list.isadmin='false';
 
-    restApi.postItem(reportItemCtrl.list)
-            .success(function () {
 
+   
+if (data.user.length==0){
 
+        restApi.postUser(reportItemCtrl.list)
+            .success(function (data) {
+            
               })
             .error(function (error) {
                 $scope.status = 'Unable to load customer data: ' + error.message;
             });
 
+            restApi.postItem(reportItemCtrl.list)
+            .success(function () {
 
+
+            })
+            .error(function (error) {
+                $scope.status = 'Unable to load customer data: ' + error.message;
+            });
+
+
+        }
+
+     
+    else if(reportItemCtrl.list.email==data.user[0].email){
+
+        restApi.updateUser(reportItemCtrl.list)
+            .success(function (data) {
+            
+              })
+            .error(function (error) {
+                $scope.status = 'Unable to load customer data: ' + error.message;
+            });
+
+            restApi.postItem(reportItemCtrl.list)
+            .success(function () {
+
+
+            })
+            .error(function (error) {
+                $scope.status = 'Unable to load customer data: ' + error.message;
+            });
+
+
+        }
+
+        
+
+});
+         
+
+
+    
        
 reportItemCtrl.progressfunction();
 

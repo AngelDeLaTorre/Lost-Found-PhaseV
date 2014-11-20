@@ -233,6 +233,7 @@ exports.postComment= function(req,res){
 
 exports.postUser= function(req,res){
   console.log("POST");
+   var randkey= generateKey();  
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
@@ -240,7 +241,7 @@ exports.postUser= function(req,res){
                    return console.error('could not connect to postgres', err);
                    }
                    
-                   client.query("INSERT INTO users (firstname, lastname, email, phone, passkey, isblocked, isadmin) VALUES ('"+req.body.firstname+"','"+req.body.lastname+"','"+req.body.email+"','"+req.body.phone+"','"+req.body.passkey+"','"+req.body.isblocked+"','"+req.body.isadmin+"')", function(err, result) {
+                   client.query("INSERT INTO users (firstname, lastname, email, phone, passkey, isblocked, isadmin) VALUES ('"+req.body.firstname+"','"+req.body.lastname+"','"+req.body.email+"','"+req.body.phone+"','"+randkey+"','"+req.body.isblocked+"','"+req.body.isadmin+"')", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -250,12 +251,14 @@ exports.postUser= function(req,res){
                                 client.end();
                                 });
                    });
+  sendMail(req.body.email, randkey);
 };
 
 
 
 exports.updateUser= function(req,res){
   console.log("POST");
+     var randkey= generateKey();  
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
@@ -263,7 +266,7 @@ exports.updateUser= function(req,res){
                    return console.error('could not connect to postgres', err);
                    }
                    
-                   client.query("UPDATE public.users SET firstname = '"+req.body.firstname+"', lastname = '"+req.body.lastname+"', phone = '"+req.body.phone+"' where email = '"+req.body.email+"'", function(err, result) {
+                   client.query("UPDATE public.users SET firstname = '"+req.body.firstname+"', lastname = '"+req.body.lastname+"',passkey ='"+randkey+"', phone = '"+req.body.phone+"' where email = '"+req.body.email+"'", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -273,6 +276,7 @@ exports.updateUser= function(req,res){
                                 client.end();
                                 });
                    });
+    sendMail(req.body.email, randkey);
 };
 
 
@@ -317,6 +321,34 @@ exports.getUsers = function(req, res) {
                                 }
                                 var response = {
                                 "users" : result.rows
+                                };
+                                
+                                res.json(200,response);
+                                console.log(response);
+                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                                client.end();
+                                });
+                   });
+
+};
+
+exports.getUserEmail = function(req, res) {
+    console.log("GET");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var client = new pg.Client(conString);
+    
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query("SELECT  *  FROM public.users where users.email = '"+req.params.email+"' and users.isadmin = 'false'" , function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                var response = {
+                                "user" : result.rows
                                 };
                                 
                                 res.json(200,response);
@@ -377,8 +409,8 @@ exports.getItems = function(req, res) {
                                 "items" : result.rows
                                 };
                                 res.json(200,response);
-                                console.log(response);
-                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                           
+                        //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
                                 });
                    });
@@ -637,9 +669,9 @@ exports.getItemsAdminSearchBar = function(req, res) {
 
 // };
 
-exports.postItem= function(req,res){
+/*exports.postItem= function(req,res){
   
-  
+   var randkey="";
   console.log("POST");
   var client = new pg.Client(conString);
   client.connect(function(err) {
@@ -652,10 +684,10 @@ exports.postItem= function(req,res){
                                 if (err) {
                                 return console.error('error running query', err);
                                 }
-                                
+                                client.end();
                                 });   
                              
-                            var randkey = generateKey();    
+                            randkey = generateKey();    
 
                    client.query("UPDATE public.users SET firstname = '"+req.body.firstname+"', lastname = '"+req.body.lastname+"', phone = '"+req.body.phone+"', passkey = '"+randkey+"' where email = '"+req.body.email+"'", function(err, result) {
                                
@@ -668,11 +700,41 @@ exports.postItem= function(req,res){
 
 
                     
-sendMail(req.body.email, randkey)
+
+                   });
+sendMail(req.body.email, randkey);
+
+};*/
+
+
+
+exports.postItem= function(req,res){
+  
+   var randkey="";
+  console.log("POST");
+  var client = new pg.Client(conString);
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   console.log(req.body);
+                   client.query("INSERT INTO item (itemname,description,locationitem,city,itemstatus,email,category,itempicture) VALUES ('"+req.body.itemname+"','"+req.body.description+"','"+req.body.location+"','"+req.body.city+"','"+req.body.itemStatus+"','"+req.body.email+"','"+req.body.category+"','"+req.body.itempicture+"')", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                client.end();
+                                });   
+                             
+       
+
+                  
+                    
+
                    });
 
-};
 
+};
 
 
 exports.updateItem= function(req,res){
@@ -686,16 +748,18 @@ exports.updateItem= function(req,res){
                    client.query("UPDATE item SET itemname = '"+req.body.itemname+"', description = '"+req.body.description+"',locationitem = '"+req.body.locationitem+"',city = '"+req.body.city+"',category = '"+req.body.category+"' ,itempicture = '"+req.body.itempicture+"' WHERE itemid = '"+req.body.itemid+"'", function(err, result) {
                                
                                 if (err) {
+                                  
                                 return console.error('error running query', err);
                                 }
                                 
-                               
+                                client.end();
                                 });
                  
 
                  client.query("UPDATE public.users SET firstname = '"+req.body.firstname+"', lastname = '"+req.body.lastname+"', phone = '"+req.body.phone+"',  where email = '"+req.body.email+"'", function(err, result) {
                                
                                 if (err) {
+                                
                                 return console.error('error running query', err);
                                 }
                                 

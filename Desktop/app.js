@@ -144,6 +144,7 @@ app.post('/updateUser/', routes.updateUser);
 app.post('/updateItem/', routes.updateItem);
 app.post('/resetKey/', routes.resetKey);
 app.post(/addSeen/, routes.addSeen);
+app.get('/getUserEmail/:email',routes.getUserEmail);
 
 // base64 str will be saved into ./public/uploads dir,
 // check res.locals.image in the next router.
