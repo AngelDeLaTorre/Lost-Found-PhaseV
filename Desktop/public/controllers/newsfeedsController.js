@@ -6,16 +6,12 @@ newsfeedCtrl.items = getItems;
 newsfeedCtrl.status = {};
 shareData.itemSelected = {};
 newsfeedCtrl.setValue = setValue;
-
+newsfeedCtrl.page = 0;
 
 newsfeedCtrl.isDisabled= true;
 
+  
 
-
-
-
-
-  getItems();  
   function getItems() {
         restApi.getItems()
             .success(function (data) {
@@ -66,5 +62,18 @@ newsfeedCtrl.addSeen = function(id){
 };
 
 
+newsfeedCtrl.get10Items = function(offset){
+newsfeedCtrl.page= newsfeedCtrl.page+offset;
+restApi.get10Items(newsfeedCtrl.page)
+.success(function (data){
+newsfeedCtrl.items = data.items;
+})
+.error(function (error){
+newsfeedCtrl.status='Unable to load customer data: ' +error.message;
+});
+
+};
+
+newsfeedCtrl.get10Items(newsfeedCtrl.page); 
 
 }]);

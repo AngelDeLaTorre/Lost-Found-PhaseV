@@ -30,7 +30,7 @@ var flag ;
 
 
   	
-  	$rootScope.loggedInUser=true; 
+  	//$rootScope.loggedInUser=true; 
    
   
   }

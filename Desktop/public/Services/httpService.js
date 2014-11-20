@@ -41,7 +41,13 @@
         unblockAdminComment:unblockAdminComment,
         addSeen:addSeen,
         uploadPic:uploadPic,
-         getUserEmail:getUserEmail
+
+         getUserEmail:getUserEmail,
+
+        get10Items:get10Items,
+        get10LostItems:get10LostItems,
+        get10FoundItems:get10FoundItems
+
 
      
 
@@ -223,6 +229,18 @@
   function addSeen(id){
     var data = {id:id};
     return $http.post('/addSeen/',data);
+  };
+
+  function get10Items(offset){
+    return $http.get('/get10Items/'+offset);
+  };
+
+  function get10LostItems(offset){
+    return $http.get('/get10LostItems/'+offset);
+  };
+
+  function get10FoundItems(offset){
+    return $http.get('/get10FoundItems/'+offset);
   };
 
 }

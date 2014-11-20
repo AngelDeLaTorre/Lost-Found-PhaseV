@@ -77,6 +77,7 @@ if (data.user.length==0){
                 $scope.status = 'Unable to load customer data: ' + error.message;
             });
 
+
             restApi.postItem(reportItemCtrl.list)
             .success(function () {
 
@@ -88,21 +89,25 @@ if (data.user.length==0){
 
 
         }
-
+reportItemCtrl.list ={};
         
+reportItemCtrl.progressfunction();
+};
 
-});
          
 
 
     
+
+
+
        
-reportItemCtrl.progressfunction();
 
 
+});
      
 
-    };
+
 
         
     reportItemCtrl.setValue = function (x,myFile){

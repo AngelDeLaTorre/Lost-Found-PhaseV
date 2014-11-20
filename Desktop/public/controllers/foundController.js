@@ -6,8 +6,8 @@ foundCtrl.foundItems = getFoundItems;
 foundCtrl.status = {};
 shareData.itemStatus = {};
 foundCtrl.searchFoundItem ={};
-
-  getFoundItems(); 
+foundCtrl.page = 0;
+  
 
   function getFoundItems() {
         restApi.getFoundItems()
@@ -68,6 +68,20 @@ foundCtrl.addSeen = function(id){
   });
 
 };
+
+foundCtrl.get10FoundItems = function(offset){
+foundCtrl.page = foundCtrl.page+offset;
+restApi.get10FoundItems(foundCtrl.page)
+.success(function (data){
+foundCtrl.foundItems = data.foundItems;
+})
+.error(function (error){
+foundCtrl.status='Unable to load customer data: ' +error.message;
+});
+
+};
+
+foundCtrl.get10FoundItems(foundCtrl.page); 
 
 
 }]);

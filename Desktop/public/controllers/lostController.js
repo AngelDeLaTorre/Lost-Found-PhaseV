@@ -6,9 +6,9 @@ lostCtrl.lostItems = getLostItems;
 lostCtrl.status = {};
 shareData.itemStatus = {};
 lostCtrl.searchLostItem ={};
+lostCtrl.page = 0;
 
-
-  getLostItems();  
+  //getLostItems();  
   function getLostItems() {
         restApi.getLostItems()
             .success(function (data) {
@@ -63,9 +63,23 @@ lostCtrl.addSeen = function(id){
 
   })
   .error(function (error){
-    newsfeedCtrl.status='Unable to load customer data: ' +error.message;
+    lostCtrl.status='Unable to load customer data: ' +error.message;
   });
 
 };
+
+lostCtrl.get10LostItems = function(offset){
+lostCtrl.page = lostCtrl.page+offset;
+restApi.get10LostItems(lostCtrl.page)
+.success(function (data){
+lostCtrl.lostItems = data.lostItems;
+})
+.error(function (error){
+lostCtrl.status='Unable to load customer data: ' +error.message;
+});
+
+};
+
+lostCtrl.get10LostItems(lostCtrl.page); 
   
 }]);
