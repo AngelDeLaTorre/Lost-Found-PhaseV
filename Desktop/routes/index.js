@@ -70,33 +70,69 @@ transporter.sendMail(mailOptions, function(error, info){
 exports.resetKey = function(req,res){
   console.log("POST RESET KEY");
   var randkey = generateKey();
+  
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
-    
+    var response ={}; 
   client.connect(function(err) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
+   client.query("select exists(select 1 from users where email='"+req.body.id+"')", function(err, result){
+                      if (err) {
+                                return console.error('error running query', err);
+                                }
+                               response = result.rows[0];
+                                 console.log(response.exists);
+                             
+                                
+                                if(response.exists){
+     sendMail(req.body.id,randkey);   }  
+
+         client.query("UPDATE public.users SET passkey = '"+randkey+"'  WHERE email = '"+req.body.id+"'", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+
+
+                                res.status(200);
+                                
+                                
+                               
+                                });
+                                client.end();
+                                });
+                                          });
+         
+                     
+             
+
                    client.query("UPDATE public.users SET passkey = '"+randkey+"'  WHERE email = '"+req.body.id+"'", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
                                 }
-                                
+
+
                                 res.status(200);
                                 
                                 
                                 client.end();
                                 });
+    
+    
+    
+}
 
-                   });
-
-  sendMail(req.body.id,randkey);
-
+                               
+      //   });                          
 
 
-};
+
+
+//};
 
 
 exports.getLostItemsSearch = function(req, res) {
@@ -219,7 +255,7 @@ exports.postComment= function(req,res){
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-           
+
                    client.query("INSERT INTO comment( itemid, usercomment, email) SELECT * FROM (SELECT "+req.body.itemid+",'"+req.body.usercomment+"','"+req.body.email+"') AS tmp WHERE NOT EXISTS (SELECT * FROM comment WHERE  itemid = '"+req.body.itemid+"' AND usercomment = '"+req.body.usercomment+"' AND email = '"+req.body.email+"') LIMIT 1", function(err, result) {
                               
 
@@ -237,26 +273,41 @@ exports.postUser= function(req,res){
   console.log("POST POSTUSER");
    var randkey= generateKey();  
   var client = new pg.Client(conString);
-     
+      var response ={};
+           
   client.connect(function(err) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
+
+                    client.query("select exists(select 1 from users where email='"+req.body.email+"')", function(err, result){
+                      if (err) {
+                                return console.error('error running query', err);
+                                }
+                                response = result.rows[0];
+                                  if(!response.exists){
+                 
+                                   
+                     
                    
+                
                    client.query("INSERT INTO users( firstname, lastname, email, phone, passkey) SELECT * FROM (SELECT '"+req.body.firstname+"','"+req.body.lastname+"','"+req.body.email+"','"+req.body.phone+"','"+randkey+"') AS tmp WHERE NOT EXISTS ( SELECT * FROM users WHERE  email = '"+req.body.email+"') LIMIT 1 ", function(err, result) {
 
 
                                 if (err) {
                                 return console.error('error running query', err);
                                 }
-                                
+                                 
                                 res.status(200);
                                 client.end();
                                 });
+                       sendMail(req.body.email, randkey);
+                   }
                    });
+               
+       });
 
 
-  sendMail(req.body.email, randkey);
 };
 
 
@@ -838,6 +889,10 @@ exports.postItem= function(req,res){
                                 if (err) {
                                 return console.error('error running query', err);
                                 }
+
+
+
+
                                 client.end();
                                 });   
                              

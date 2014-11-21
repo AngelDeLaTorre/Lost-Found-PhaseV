@@ -58,7 +58,7 @@
                             <input type="email" class="form-control" id="phone" placeholder="{{vm.translations.EMAIL}}" required="require" ng-model="list.email">
                              <label for="phone">
                                 {{vm.translations.PHONENUM}}</label>
-                            <input type="text" class="form-control" id="phone" placeholder="787-655-5678"  ng-model="list.phone">
+                            <input type="tel" class="form-control" id="phone" size ="12"placeholder="787-655-5678" pattern="ddd-ddd-dddd" required="require" ng-model="list.phone">
                        
                         <div class="form-group">
                             <label for="location">

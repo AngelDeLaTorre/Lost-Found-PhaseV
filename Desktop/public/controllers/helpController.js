@@ -2,24 +2,16 @@ angular.module('formApp')
 .controller('helpController',['$scope','$http','restApi','shareData', function($scope,$http,restApi,shareData){
 var helpCtrl = this;
 
-helpCtrl.users = {};
 
 
-helpCtrl.getUser = function(message){
-	 restApi.getUsers()
-            .success(function (data) {
-              
-                helpCtrl.users = data.users;
-              })
-            .error(function (error) {
-                helpCtrl.status = 'Unable to load customer data: ' + error.message;
-            });
- 
-  angular.forEach(helpCtrl.users, function (user) {
-  				if(helpCtrl.helpEmail === user.email)
-  				{
-  					alert(message);
-  					restApi.resetKey(helpCtrl.helpEmail)
+
+
+helpCtrl.SendNewKey = function(message,email){
+        
+            alert(message);
+            alert(email);
+
+  					restApi.resetKey(email)
            			 .success(function (data) {
               
                 
@@ -27,14 +19,11 @@ helpCtrl.getUser = function(message){
 		            .error(function (error) {
 		                helpCtrl.status = 'Unable to load customer data: ' + error.message;
 		            });
+};
 
-
-  				}
+  			
   				
             
-        });
-
-};
 
 
 
