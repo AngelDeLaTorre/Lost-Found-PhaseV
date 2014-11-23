@@ -10,7 +10,7 @@
 		searchUserEmail : {},
 		itemStatus:{},
 		myItems : {},
-		credentials: {}
+		credentials: {'email':'','mykey':''}
 		
 		
 	};

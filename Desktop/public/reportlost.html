@@ -43,19 +43,20 @@
 <div id="list" > 
 
 <ul class="list-group">
-  <li class="list-group-item" ng-repeat="lostitem in lostCtrl.lostItems">
+  <li class="list-group-item" ng-repeat="lostitem in lostCtrl.lostItems | filter:searchLostItem">
     <div class="row">
 
-  <div class="col-xs-12 col-md-4"><div class="itemimg"> <div class="col-sm-12 col-md-12 col-lg-12"><img ng-src={{lostitem.itempicture}}  ui-sref="form.viewitem({ item:lostitem.itemid})" ng-click="lostCtrl.addSeen(lostitem.itemid)" height="200" width="200"></div> </div></div>
+  <div class="col-xs-12 col-sm-4"><div class="itemimg"> <div class="col-xs-12 col-sm-12"><img ng-src="{{lostitem.itempicture}}"  ui-sref="form.viewitem({ item:lostitem.itemid})" ng-click="lostCtrl.addSeen(lostitem.itemid)" class="img-responsive"></div> </div></div>
   <div class="row">
-  <div class="col-xs-12 col-md-4"><h3 ><CENTER>{{lostitem.itemstatus}}</CENTER></h3><h5><CENTER> {{vm.translations.ITEMID}}: {{lostitem.itemid}}</CENTER></h5><h5><CENTER>{{vm.translations.CATEGORY}}: {{lostitem.category}}</CENTER></h5><h5><CENTER>{{lostitem.locationitem}}</CENTER></h5><h5><center> {{vm.translations.SEENBY}}: {{lostitem.itemviews}}</center></h5>
+  <div class="col-xs-12 col-sm-4"><h3 ><CENTER>{{lostitem.itemstatus}}</CENTER></h3><h5><CENTER> {{vm.translations.ITEMID}}: {{lostitem.itemid}}</CENTER></h5><h5><CENTER>{{vm.translations.CATEGORY}}: {{lostitem.category}}</CENTER></h5><h5><CENTER>{{lostitem.locationitem}}</CENTER></h5><h5><center> {{vm.translations.SEENBY}}: {{lostitem.itemviews}}</center></h5>
 
  </div>
   <div class="row">
-  <div class="col-xs-12 col-md-4">  
+  <div class="col-xs-12 col-sm-3">  
+     
  <div class="thumbs ">
-   
-  <h4><center>{{lostitem.itemname}}</center></h4>
+    <p><h4><center>{{lostitem.itemname}}</center></h4></p>
+
  
  <center>
 
@@ -70,19 +71,5 @@
   
 
 </ul>
-<br>
-
-<div class="row">
-
-   <div class="col-sm-3 col-md-3"> 
-    <button ng-hide="lostCtrl.page === 0" class= "btn-primary" ng-click="gotoTop() ; lostCtrl.get10LostItems(-10)"align= "rigth">Previous page</button>
-
-   </div>
-  <div class="col-sm-6 col-md-6">  </div>
- <div class="col-sm-3 col-md-3"> 
-<button ng-hide="lostCtrl.lostItems.length < 10" class= "btn-primary" ng-click="gotoTop() ; lostCtrl.get10LostItems(10)"align= "rigth">Next page</button>
-
-   </div>
-  </div>
 </div>
 </div>

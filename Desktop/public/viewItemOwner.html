@@ -11,7 +11,7 @@
 
                 <div class="thumbnail">
                      <div class=".col-xs-6 .col-sm-3" align="right">
-                  <a  id ="editBtn" class="btn btn-default" ng-click="gotoTop()" role="button" ui-sref="form.edititem({item:itemViewCntrl.item.itemid})">{{vm.translations.EDIT}}</a> 
+                  <a  id ="editBtn" class="btn btn-default" ng-click="gotoTop()" role="button" ui-sref="form.edititem({item:itemViewCntrl.item.itemid})"><span class="glyphicon glyphicon glyphicon-pencil"></span></a> 
                    </div>
                     <img ng-src={{itemViewCntrl.item.itempicture}}>
                     <h4> <a> {{itemViewCntrl.item.itemname}}</a> </h4>
@@ -32,7 +32,7 @@
                 <div class="well">
 
                     <div class="text-right">
-                        <a class="btn btn-success" ng-click="gotoTop()" ui-sref="form.addcomment({item:itemViewCntrl.item.itemid})" >{{vm.translations.LEAVECOMMENT}}</a>
+                        <a type="submit" class="btn btn-primary " ng-click="gotoTop()" ui-sref="form.addcomment({item:itemViewCntrl.item.itemid})" >{{vm.translations.LEAVECOMMENT}}</a>
                     </div>
 
                     <hr>

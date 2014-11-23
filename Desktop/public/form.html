@@ -51,9 +51,9 @@
                 </ul>
               </form >
                <form class="navbar-form pull-right hidden-sm ">
-              <input type="email" class="form-control input-sm"  placeholder="{{vm.translations.EMAIL}}" ng-model="formCtrl.myemail" >
+              <input id="em" class="form-control input-sm" ng-model="formCtrl.myemail"  placeholder="{{vm.translations.EMAIL}}" >
               <input type="password" class="form-control input-sm"  placeholder="{{vm.translations.SECRETKEY}}" ng-model="formCtrl.mykey" >
-              <a ui-sref="form.myposts" ng-click="formCtrl.getCredentials.(formCtrl.myemail, formCtrl.mykey)" class="btn btn-small" role="button" >{{vm.translations.MYPOST}}</a>
+              <p ui-sref="form.myposts" ng-click="formCtrl.getCredentials(formCtrl.myemail, formCtrl.mykey)" class="btn btn-small" role="button" >{{vm.translations.MYPOST}}</p>
             </form>
 
             <form class="navbar-form pull-right hidden-md hidden-lg">
@@ -186,7 +186,7 @@
   <form class="navbar-form pull-right hidden-md hidden-lg ">
                <input type="email" class="form-control input-sm"  placeholder="{{vm.translations.EMAIL}}" ng-model="formCtrl.myemail" >
               <input type="password" class="form-control input-sm"  placeholder="{{vm.translations.SECRETKEY}}" ng-model="formCtrl.mykey" >
-              <a ui-sref="form.myposts" ng-click="formCtrl.getCredentials.(formCtrl.myemail, formCtrl.mykey)" class="btn btn-small" role="button" >{{vm.translations.MYPOST}}</a>
+              <a ui-sref="form.myposts({email:formCtrl.myemail})" ng-click="formCtrl.getCredentials(formCtrl.myemail, formCtrl.mykey)" class="btn btn-small" role="button" >{{vm.translations.MYPOST}}</a>
             </form>
             </div>
             <!-- /.navbar-collapse -->

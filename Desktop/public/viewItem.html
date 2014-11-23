@@ -11,25 +11,29 @@
 
                 <div class="thumbnail">
                     <img ng-src={{itemViewCntrl.item.itempicture}}>
-                    <h4> <a> {{itemViewCntrl.item.itemname}}</a> </h4>
+                     <div class="row" >
+                         <div class="col-xs-3 col-sm-3 col-md-3"></div>
+ <div class="col-xs-6 col-sm-6 col-md-6">
+                    <h5>  {{itemViewCntrl.item.itemname}} </h5>
                     <div class="caption-full" >
                         
                         <h4>{{vm.translations.FOUNDBY}} {{itemViewCntrl.item.firstname}} {{itemViewCntrl.item.lastname}}</h4>
                         <h4>{{vm.translations.REPORTEDDATE}}: {{itemViewCntrl.item.itemdate}} </h4>
 
-                      <h4 >{{vm.translations.SUCCESDATE}}: {{itemViewCntrl.item.itemsuccessdate}}</h4>
+                     
                          <h4 >{{vm.translations.ITEMID}}: {{itemViewCntrl.item.itemid}}</h4>
                           <h4>{{vm.translations.LOCATION}}: {{itemViewCntrl.item.locationitem}}</h4>
                           <h4>{{vm.translations.DESCRIPTION}}:</h4>                     
                         <p>{{itemViewCntrl.item.description}}</p>
                     </div>
+                </div>
                     
                 </div>
 
                 <div class="well">
 
                     <div class="text-right">
-                        <a class="btn btn-success" ng-click="gotoTop()" ui-sref="form.addcomment({item:itemViewCntrl.item.itemid})" >{{vm.translations.LEAVECOMMENT}}</a>
+                        <a type="submit" class="btn btn-primary " ng-click="gotoTop()" ui-sref="form.addcomment({item:itemViewCntrl.item.itemid})" >{{vm.translations.LEAVECOMMENT}}</a>
                     </div>
 
                     <hr>
@@ -38,7 +42,7 @@
                         
                         <div class="ol-sm-12 col-md-12">
                             
-                            <center>{{vm.translations.SAID}}: {{com.email}} 
+                            <center>{{com.email}} {{vm.translations.SAID}}: 
                             <p>{{com.usercomment}}</p></center>
                         </div>
                     </div>

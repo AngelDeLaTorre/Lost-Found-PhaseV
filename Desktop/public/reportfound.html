@@ -31,7 +31,7 @@
       <form class="navbar-form">
         <div class="form-group" style="display:inline;">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="{{vm.translations.SEARCH}}" ng-model="searchLostItem">
+            <input type="text" class="form-control" placeholder="{{vm.translations.SEARCH}}" ng-model="searchFoundItem">
             <span class="input-group-addon" ng-click="foundCtrl.setItems(searchFoundItem)" ><span class="glyphicon glyphicon-search"></span></span>
           </div>
         </div>
@@ -47,16 +47,16 @@
 <div id="list" > 
 
 <ul class="list-group">
-  <li class="list-group-item" ng-repeat="foundItem in foundCtrl.foundItems">
+  <li class="list-group-item" ng-repeat="foundItem in foundCtrl.foundItems |filter:searchFoundItem">
     <div class="row">
 
-  <div class="col-xs-12 col-md-4"><div class="itemimg"> <div class="col-sm-12 col-md-12 col-lg-12"><img ng-src={{foundItem.itempicture}}  ui-sref="form.viewitem({ item:foundItem.itemid})" ng-click="foundCtrl.addSeen(foundItem.itemid)" height="200" width="200"></div> </div></div>
+  <div class="col-xs-12 col-sm-4"><div class="itemimg"> <div class="col-xs-12 col-sm-12 "><img ng-src={{foundItem.itempicture}}  ui-sref="form.viewitem({ item:foundItem.itemid})" ng-click="foundCtrl.addSeen(foundItem.itemid)" class="img-responsive"></div> </div></div>
   <div class="row">
-  <div class="col-xs-12 col-md-4"><h3 ><CENTER>{{foundItem.itemstatus}}</CENTER></h3><h5><CENTER> {{vm.translations.ITEMID}}: {{foundItem.itemid}}</CENTER></h5><h5><CENTER>{{vm.translations.CATEGORY}}: {{foundItem.category}}</CENTER></h5><h5><CENTER>{{foundItem.locationitem}}</CENTER></h5><h5><center> {{vm.translations.SEENBY}}: {{foundItem.itemviews}}</center></h5>
+  <div class="col-xs-12 col-sm-4"><h3 ><CENTER>{{foundItem.itemstatus}}</CENTER></h3><h5><CENTER> {{vm.translations.ITEMID}}: {{foundItem.itemid}}</CENTER></h5><h5><CENTER>{{vm.translations.CATEGORY}}: {{foundItem.category}}</CENTER></h5><h5><CENTER>{{foundItem.locationitem}}</CENTER></h5><h5><center> {{vm.translations.SEENBY}}: {{foundItem.itemviews}}</center></h5>
 
  </div>
   <div class="row">
-  <div class="col-xs-12 col-md-4">  
+  <div class="col-xs-12 col-sm-3">  
  <div class="thumbs ">
    
   <h4 ><center>{{foundItem.itemname}}</center></h4>

@@ -138,7 +138,7 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider,$compilePro
 		})
 
 		.state('form.myposts', {
-			url: '/myposts',
+			url: '/myposts:email',
 			templateUrl: 'myPosts.html'
 		});
 		

@@ -19,7 +19,7 @@ function  myposts(){
               myPostsCtrl.myItems = data.myPosts; 
               if(myPostsCtrl.myItems.length == 0)
               {
-
+                  alert("No items for this email and password.");
                    $state.transitionTo('form.newsfeeds');
 
               }

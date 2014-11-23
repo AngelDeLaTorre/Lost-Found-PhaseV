@@ -31,8 +31,7 @@ foundCtrl.page = 0;
             .success(function (data) {
               
                 foundCtrl.foundItems = data.items;
-                alert(1)
-                alert(data.items.itemname)
+         
               })
             .error(function (error) {
                 foundCtrl.status = 'Unable to load customer data: ' + error.message;

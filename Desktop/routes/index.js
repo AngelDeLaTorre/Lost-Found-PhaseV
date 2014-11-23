@@ -34,6 +34,7 @@ var nodemailer = require('nodemailer');
 
 sendMail = function(emailto, randomkey){
 // create reusable transporter object using SMTP transport
+console.log(emailto);
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
@@ -48,6 +49,7 @@ var transporter = nodemailer.createTransport({
 // setup e-mail data with unicode symbols
 
 var mailOptions = {
+
     from: 'LostFound <lostfound.uprm@gmail.com>', // sender address
     to: emailto , // list of receivers
     subject: 'Your secret Key', // Subject line
@@ -84,13 +86,18 @@ exports.resetKey = function(req,res){
                                 return console.error('error running query', err);
                                 }
                                response = result.rows[0];
-                                 console.log(response.exists);
+                               console.log(response);
+                               
                              
+        console.log(response.exists);
+    
+        if(response.exists){
+          console.log(req.body.id);
+     sendMail(req.body.id,randkey);   }
+   });
                                 
-                                if(response.exists){
-     sendMail(req.body.id,randkey);   }  
-
-         client.query("UPDATE public.users SET passkey = '"+randkey+"'  WHERE email = '"+req.body.id+"'", function(err, result) {
+                                if(response){
+client.query("UPDATE public.users SET passkey = '"+randkey+"'  WHERE email = '"+req.body.id+"'", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -99,30 +106,15 @@ exports.resetKey = function(req,res){
 
                                 res.status(200);
                                 
-                                
-                               
+                                   client.end();
+                              
                                 });
-                                client.end();
-                                });
-                                          });
-         
-                     
-             
-
-                   client.query("UPDATE public.users SET passkey = '"+randkey+"'  WHERE email = '"+req.body.id+"'", function(err, result) {
-                               
-                                if (err) {
-                                return console.error('error running query', err);
-                                }
-
-
-                                res.status(200);
-                                
-                                
-                                client.end();
-                                });
+                    } 
+                    
     
-    
+             });
+
+
     
 }
 
@@ -285,9 +277,12 @@ exports.postUser= function(req,res){
                                 return console.error('error running query', err);
                                 }
                                 response = result.rows[0];
-                                  if(!response.exists){
-                 
-                                   
+                                                    console.log(response);
+                                 if(response.exists==false){
+                                sendMail(req.body.email, randkey);
+                   }
+                                 
+                                          });
                      
                    
                 
@@ -301,11 +296,12 @@ exports.postUser= function(req,res){
                                 res.status(200);
                                 client.end();
                                 });
-                       sendMail(req.body.email, randkey);
-                   }
+
+              
+
+
+                  
                    });
-               
-       });
 
 
 };
