@@ -39,4 +39,17 @@
   
 
 </ul><br>
+<div class="row">
+
+   <div class="col-sm-3 col-md-3"> 
+    <button ng-hide="newsfeedCtrl.page === 0" class= "btn-primary" ng-click="gotoTop() ; newsfeedCtrl.get10Items(-10)"align= "rigth">Previous page</button>
+
+   </div>
+  <div class="col-sm-6 col-md-6">  </div>
+ <div class="col-sm-3 col-md-3"> 
+<button ng-hide="newsfeedCtrl.items.length < 10" class= "btn-primary" ng-click="gotoTop() ; newsfeedCtrl.get10Items(10)"align= "rigth">Next page</button>
+
+   </div>
+  </div>
+
 </div>

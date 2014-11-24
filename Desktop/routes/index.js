@@ -272,7 +272,7 @@ exports.postUser= function(req,res){
                    return console.error('could not connect to postgres', err);
                    }
 
-                    client.query("select exists(select 1 from users where email='"+req.body.email+"')", function(err, result){
+                    client.query("select exists(select 1 from users where email='"+req.body.email+"') as exists", function(err, result){
                       if (err) {
                                 return console.error('error running query', err);
                                 }
@@ -360,9 +360,9 @@ exports.getUsers = function(req, res) {
     console.log("GET USER");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
-	var client = new pg.Client(conString);
+  var client = new pg.Client(conString);
     
-	client.connect(function(err) {
+  client.connect(function(err) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
