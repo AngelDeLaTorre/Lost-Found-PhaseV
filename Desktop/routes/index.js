@@ -53,7 +53,7 @@ var mailOptions = {
     from: 'LostFound <lostfound.uprm@gmail.com>', // sender address
     to: emailto , // list of receivers
     subject: 'Your secret Key', // Subject line
-    text: "Hi User, your secret key is "+randomkey+" " // plaintext body
+    text: "Hi User, your secret key is "+randomkey+". Use your email and this key to view and update your reports." // plaintext body
     //html: '<b>Hola tu secret que es ###</b>' // html body
 };
 
@@ -94,9 +94,9 @@ exports.resetKey = function(req,res){
         if(response.exists){
           console.log(req.body.id);
      sendMail(req.body.id,randkey);   }
-   });
+
                                 
-                                if(response){
+                                if(response.exists){
 client.query("UPDATE public.users SET passkey = '"+randkey+"'  WHERE email = '"+req.body.id+"'", function(err, result) {
                                
                                 if (err) {
@@ -113,6 +113,7 @@ client.query("UPDATE public.users SET passkey = '"+randkey+"'  WHERE email = '"+
                     
     
              });
+   });
 
 
     
@@ -286,7 +287,7 @@ exports.postUser= function(req,res){
                      
                    
                 
-                   client.query("INSERT INTO users( firstname, lastname, email, phone, passkey) SELECT * FROM (SELECT '"+req.body.firstname+"','"+req.body.lastname+"','"+req.body.email+"','"+req.body.phone+"','"+randkey+"') AS tmp WHERE NOT EXISTS ( SELECT * FROM users WHERE  email = '"+req.body.email+"') LIMIT 1 ", function(err, result) {
+                   client.query("INSERT INTO users( firstname, lastname, email, phone, passkey, isadmin) SELECT * FROM (SELECT '"+req.body.firstname+"','"+req.body.lastname+"','"+req.body.email+"','"+req.body.phone+"','"+randkey+"','"+req.body.isadmin+"') AS tmp WHERE NOT EXISTS ( SELECT * FROM users WHERE  email = '"+req.body.email+"') LIMIT 1 ", function(err, result) {
 
 
                                 if (err) {
@@ -318,7 +319,7 @@ exports.updateUser= function(req,res){
                    return console.error('could not connect to postgres', err);
                    }
                    
-                   client.query("UPDATE public.users SET firstname = '"+req.body.firstname+"', lastname = '"+req.body.lastname+"',passkey ='"+randkey+"', phone = '"+req.body.phone+"' where email = '"+req.body.email+"'", function(err, result) {
+                   client.query("UPDATE public.users SET firstname = '"+req.body.firstname+"', lastname = '"+req.body.lastname+"', phone = '"+req.body.phone+"' where email = '"+req.body.email+"'", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
