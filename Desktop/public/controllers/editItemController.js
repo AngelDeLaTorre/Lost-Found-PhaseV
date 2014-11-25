@@ -1,9 +1,10 @@
 
 angular.module('formApp')
-.controller('editItemController',['$scope','$http','$stateParams','restApi','fileUpload', function($scope,$http,$stateParams,restApi,fileUpload) {
+.controller('editItemController',['$scope','$http','$stateParams','restApi','fileUpload','$timeout','$state', function($scope,$http,$stateParams,restApi,fileUpload,$timeout,$state) {
 
 var editCtrl = this;
-
+ editCtrl.progress = 0;
+    prog =0;
 editCtrl.itemid = $stateParams.item;
 
 getItemID();
@@ -46,6 +47,8 @@ editCtrl.updateItem=function(){
             .error(function (error) {
                 editCtrl.status = 'Unable to load customer data: ' + error.message;
             });
+
+            editCtrl.progressfunction();
 };
    
 editCtrl.updateUser=function(){
@@ -59,7 +62,20 @@ editCtrl.updateUser=function(){
             });
 }
 
+editCtrl.progressfunction = function(){
+        
 
+        if(prog ===100)
+            return $state.go('form.newsfeeds') ;
+
+              prog++;
+            editCtrl.progress = prog;
+           
+            $timeout(editCtrl.progressfunction,100);
+
+        
+
+    };
 
 
 

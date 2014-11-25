@@ -9,7 +9,6 @@ var helpCtrl = this;
 helpCtrl.SendNewKey = function(message,email){
         
             alert(message);
-           
 
   					restApi.resetKey(email)
            			 .success(function (data) {
