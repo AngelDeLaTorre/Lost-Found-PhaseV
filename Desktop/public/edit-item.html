@@ -93,10 +93,14 @@
                        
                         <div class="row">
   <div class=" col-sm-7 col-md-7">
-    
+    <div  class="progress" ng-show="editCtrl.progress"><div class="progress-bar" ng-model="editCtrl.progress" style="width:{{editCtrl.progress}}%"></div></div>
+                         <div ng-show="editCtrl.progress">
+                         {{editCtrl.progress}}%
+                         </div>
        </div> 
+       
        <div class="col-md-4 col-sm-4">
-    <a ui-sref="form.newsfeeds" ng-click="gotoTop();editCtrl.updateUser();editCtrl.updateItem();" id ="save"type="submit" class="btn btn-primary " role="button">{{vm.translations.SAVE}}</a> 
+    <a ng-click="editCtrl.updateUser();editCtrl.updateItem();" id ="save"type="submit" class="btn btn-primary " role="button">{{vm.translations.SAVE}}</a> 
        </div> 
 
 

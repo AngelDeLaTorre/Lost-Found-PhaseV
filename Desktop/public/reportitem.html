@@ -98,13 +98,14 @@
                             <label for="name">
                                 {{vm.translations.DESCRIPTION}}</label>
                             <textarea name="message" id="message" class="form-control" required="required" rows="9" cols="25"
-                                placeholder="Message" ng-model="list.description" ng-pattern="reportItemCtrl.pattern.field" ></textarea>
+                                placeholder="{{vm.translations.MESSAGE}}" ng-model="list.description" ng-pattern="reportItemCtrl.pattern.field" ></textarea>
                         </div class "left">
                        
 
-                         <div  class="progress" ng-show="reportItemCtrl.progress"><div class="progress-bar" ng-model="reportItemCtrl.progress" style="width:{{reportItemCtrl.progress}}%">{{reportItemCtrl.progress}}</div></div>
-
-
+                         <div  class="progress" ng-show="reportItemCtrl.progress"><div class="progress-bar" ng-model="reportItemCtrl.progress" style="width:{{reportItemCtrl.progress}}%"></div></div>
+                         <div ng-show="reportItemCtrl.progress">
+                         {{reportItemCtrl.progress}}%
+                         </div>
                     </div>
                      <div class="row" >
  <div class="col-xs-2 col-md-12">
