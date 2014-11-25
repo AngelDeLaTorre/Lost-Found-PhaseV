@@ -52,14 +52,14 @@
 
   <div class="col-xs-12 col-sm-4"><div class="itemimg"> <div class="col-xs-12 col-sm-12 "><img ng-src={{foundItem.itempicture}}  ui-sref="form.viewitem({ item:foundItem.itemid})" ng-click="foundCtrl.addSeen(foundItem.itemid)" class="img-responsive"></div> </div></div>
   <div class="row">
-  <div class="col-xs-12 col-sm-4"><h3 ><CENTER>{{foundItem.itemstatus}}</CENTER></h3><h5><CENTER> {{vm.translations.ITEMID}}: {{foundItem.itemid}}</CENTER></h5><h5><CENTER>{{vm.translations.CATEGORY}}: {{foundItem.category}}</CENTER></h5><h5><CENTER>{{foundItem.locationitem}}</CENTER></h5><h5><center> {{vm.translations.SEENBY}}: {{foundItem.itemviews}}</center></h5>
+  <div class="col-xs-12 col-sm-4"><h3 ><CENTER>{{foundItem.itemname}}</CENTER></h3><h5><CENTER> {{vm.translations.ITEMID}}: {{foundItem.itemid}}</CENTER></h5><h5><CENTER>{{vm.translations.CATEGORY}}: {{foundItem.category}}</CENTER></h5><h5><CENTER>{{foundItem.locationitem}}</CENTER></h5><h5><center> {{vm.translations.SEENBY}}: {{foundItem.itemviews}}</center></h5>
 
  </div>
   <div class="row">
   <div class="col-xs-12 col-sm-3">  
  <div class="thumbs ">
    
-  <h4 ><center>{{foundItem.itemname}}</center></h4>
+  <h4 ><center>{{foundItem.itemstatus}}</center></h4>
  
  <center>
 

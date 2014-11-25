@@ -81,7 +81,7 @@ exports.resetKey = function(req,res){
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-   client.query("select exists(select 1 from users where email='"+req.body.id+"')", function(err, result){
+   client.query("select exists(select 1 from users where email='"+req.body.id+"') as exists", function(err, result){
                       if (err) {
                                 return console.error('error running query', err);
                                 }
